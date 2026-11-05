@@ -14,6 +14,10 @@ Current demand evidence: hiring value 4 of 5 (required duty at Mistral, v2 rank 
 
 Level 1 Learn shipped as v0.1 under the December Compression Protocol (Sprint 2 early pull): request logging, tracing spans, and a prompt and model version registry, standard library only, on 10 labelled simulated requests. Measured results and the grade (8,700 of 10,000) are in level-1-learn/README.md. Level 2 Build shipped as v0.5 (2026-11-05): a persistent JSONL LogStore, an ObservabilityService with nested spans over 60 simulated requests, registry diff, and a static HTML dashboard, standard library only, grade 8,700 of 10,000 in level-2-build/README.md. Deep is not started.
 
+## Ship note: Deep v1.0 (2026-11-05)
+
+Level 3 Deep shipped as v1.0 under the December Compression Protocol (Sprint 2 early pull): drift detection in level-3-deep/drift.py (PSI, mean shift in pooled SD units, two-proportion z for the simulated pass rate) and a seeded simulated experiment in run_deep.py with baseline, no-drift control, latency-and-cost drift, and quality drift windows of 1000 records each. Measured: control overall none with 0 alerts, latency-cost drift overall high with 3 alerts, quality drift overall high with 1 alert (simulated pass rate 0.909 to 0.628, drop 0.281, z -14.896831). Quality is a simulated logged field throughout, never real model quality. Tests 47 passed. Grade 8,500 of 10,000 in level-3-deep/README.md. The rest of Deep scope is the v1.1 backlog in ROADMAP.md.
+
 ## Future
 
 Open problems and the project's next steps sit in the Deep level scope in SPEC.md. Any forecast about this field is [unverified] unless a dated primary source is added here at the wave update.
