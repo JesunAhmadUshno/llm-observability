@@ -7,10 +7,17 @@ import unittest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
-from observability import (ManualClock, ObservabilityError,  # noqa: E402
-                           RequestLogger, Tracer, VersionRegistry,
-                           aggregate, compute_cost, percentile,
-                           prompt_hash)
+from observability import (  # noqa: E402
+    ManualClock,
+    ObservabilityError,
+    RequestLogger,
+    Tracer,
+    VersionRegistry,
+    aggregate,
+    compute_cost,
+    percentile,
+    prompt_hash,
+)
 
 
 class TestCost(unittest.TestCase):
