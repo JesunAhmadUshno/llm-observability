@@ -10,6 +10,10 @@ Prior art for this project is named in NOVELTY.md (general observability stacks 
 
 Current demand evidence: hiring value 4 of 5 (required duty at Mistral, v2 rank 9) [confirmed, fleet and scoring pass 2026-11-04; for P23 to P29, the decision pack 2026-11-04]. The Round 3 research (2026-11-04) found the market centre at post-training, evals, environments, and inference depth [confirmed as the research finding; the report is at ~/workspace/research_notes/roadmap-v3-revaluation-research-20261104-0949/report.md]. Tools and versions are pinned at Build time, not in this v1.
 
+## Ship note (2026-11-05)
+
+Level 1 Learn shipped as v0.1 under the December Compression Protocol (Sprint 2 early pull): request logging, tracing spans, and a prompt and model version registry, standard library only, on 10 labelled simulated requests. Measured results and the grade (8,700 of 10,000) are in level-1-learn/README.md. Build and Deep are not started.
+
 ## Future
 
 Open problems and the project's next steps sit in the Deep level scope in SPEC.md. Any forecast about this field is [unverified] unless a dated primary source is added here at the wave update.
