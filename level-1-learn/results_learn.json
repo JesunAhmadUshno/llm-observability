@@ -1,0 +1,399 @@
+{
+  "cost_check": {
+    "matched": 10,
+    "total": 10
+  },
+  "label": "simulated requests only, no real LLM call",
+  "records": [
+    {
+      "completion_tokens": 500,
+      "cost_usd": 0.2,
+      "latency_ms": 100,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Summarize the incident report",
+      "prompt_hash": "440c558c8eda7e8fce030ca651195a0fe33ef0095e95be6b2cadfa3a7a979f35",
+      "prompt_tokens": 1000,
+      "prompt_version": "v1",
+      "request_id": "R01",
+      "total_tokens": 1500
+    },
+    {
+      "completion_tokens": 250,
+      "cost_usd": 0.1,
+      "latency_ms": 200,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Translate the greeting",
+      "prompt_hash": "329e38533e05b45543156499dfa75682478c33123b175344c42702d117796cdd",
+      "prompt_tokens": 500,
+      "prompt_version": "v1",
+      "request_id": "R02",
+      "total_tokens": 750
+    },
+    {
+      "completion_tokens": 1000,
+      "cost_usd": 2.0,
+      "latency_ms": 300,
+      "model": "alpha-large",
+      "model_version": "v1",
+      "prompt": "Draft the release notes",
+      "prompt_hash": "42046fdc1da66dfd9c27826d47a9e6d4b5fbdafc5af963159937c6ea4aa281db",
+      "prompt_tokens": 2000,
+      "prompt_version": "v1",
+      "request_id": "R03",
+      "total_tokens": 3000
+    },
+    {
+      "completion_tokens": 500,
+      "cost_usd": 0.3,
+      "latency_ms": 400,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Classify the support ticket",
+      "prompt_hash": "7b6b06af8d7039c22d20c4257e44acbdf20a34c1534e9bf90898e823df2df98b",
+      "prompt_tokens": 2000,
+      "prompt_version": "v1",
+      "request_id": "R04",
+      "total_tokens": 2500
+    },
+    {
+      "completion_tokens": 500,
+      "cost_usd": 1.0,
+      "latency_ms": 500,
+      "model": "alpha-large",
+      "model_version": "v1",
+      "prompt": "Explain the error trace",
+      "prompt_hash": "965d6b18990180f6e5d57bafedd125178f28b751fea9b84750aa56a654c4ed76",
+      "prompt_tokens": 1000,
+      "prompt_version": "v2",
+      "request_id": "R05",
+      "total_tokens": 1500
+    },
+    {
+      "completion_tokens": 1000,
+      "cost_usd": 0.3,
+      "latency_ms": 600,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Rewrite the paragraph",
+      "prompt_hash": "e46c93348e58dd337c89f8df8d780c65e32fd8ee0172157542a8c527315c386d",
+      "prompt_tokens": 1000,
+      "prompt_version": "v2",
+      "request_id": "R06",
+      "total_tokens": 2000
+    },
+    {
+      "completion_tokens": 2000,
+      "cost_usd": 4.0,
+      "latency_ms": 700,
+      "model": "alpha-large",
+      "model_version": "v1",
+      "prompt": "Plan the migration steps",
+      "prompt_hash": "c447e8c320ea7cd26cc3cca33a10f75764f0e0afd83a6e8d41f9d720a3da5ca0",
+      "prompt_tokens": 4000,
+      "prompt_version": "v2",
+      "request_id": "R07",
+      "total_tokens": 6000
+    },
+    {
+      "completion_tokens": 500,
+      "cost_usd": 0.15,
+      "latency_ms": 800,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Answer the billing question",
+      "prompt_hash": "b3fde0f082766532c07609b34be0d28b9ae75f193937ff01bb9982f2daafe044",
+      "prompt_tokens": 500,
+      "prompt_version": "v2",
+      "request_id": "R08",
+      "total_tokens": 1000
+    },
+    {
+      "completion_tokens": 500,
+      "cost_usd": 1.5,
+      "latency_ms": 900,
+      "model": "alpha-large",
+      "model_version": "v1",
+      "prompt": "Review the code change",
+      "prompt_hash": "9964f947f92dcb8fa69373f38948f723f4cf70321b03a223f778383b01f0ed8a",
+      "prompt_tokens": 2000,
+      "prompt_version": "v2",
+      "request_id": "R09",
+      "total_tokens": 2500
+    },
+    {
+      "completion_tokens": 500,
+      "cost_usd": 0.25,
+      "latency_ms": 1000,
+      "model": "alpha-small",
+      "model_version": "v1",
+      "prompt": "Summarize the meeting notes",
+      "prompt_hash": "5b33edd6be651c82c27c93f5610533265d0aa48ab2ce1c2246fb7b4c8b486585",
+      "prompt_tokens": 1500,
+      "prompt_version": "v2",
+      "request_id": "R10",
+      "total_tokens": 2000
+    }
+  ],
+  "registry_changelog": [
+    {
+      "kind": "prompt",
+      "name": "chat-prompt",
+      "version": "v1"
+    },
+    {
+      "kind": "prompt",
+      "name": "chat-prompt",
+      "version": "v2"
+    },
+    {
+      "kind": "model",
+      "name": "alpha-small",
+      "version": "v1"
+    },
+    {
+      "kind": "model",
+      "name": "alpha-large",
+      "version": "v1"
+    }
+  ],
+  "summary": {
+    "completion_tokens": 7250,
+    "count": 10,
+    "mean_latency_ms": 550.0,
+    "p50_latency_ms": 500,
+    "p95_latency_ms": 1000,
+    "per_model": {
+      "alpha-large": {
+        "completion_tokens": 4000,
+        "count": 4,
+        "mean_latency_ms": 600.0,
+        "p50_latency_ms": 500,
+        "p95_latency_ms": 900,
+        "prompt_tokens": 9000,
+        "total_cost_usd": 8.5,
+        "total_tokens": 13000
+      },
+      "alpha-small": {
+        "completion_tokens": 3250,
+        "count": 6,
+        "mean_latency_ms": 516.667,
+        "p50_latency_ms": 400,
+        "p95_latency_ms": 1000,
+        "prompt_tokens": 6500,
+        "total_cost_usd": 1.3,
+        "total_tokens": 9750
+      }
+    },
+    "prompt_tokens": 15500,
+    "total_cost_usd": 9.8,
+    "total_tokens": 22750
+  },
+  "trace_summary": {
+    "root_count": 10,
+    "span_count": 20,
+    "spans": [
+      {
+        "children": [
+          "span-2"
+        ],
+        "duration_ms": 100,
+        "end_ms": 100,
+        "name": "request:R01",
+        "parent_id": null,
+        "span_id": "span-1",
+        "start_ms": 0
+      },
+      {
+        "children": [],
+        "duration_ms": 50,
+        "end_ms": 100,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-1",
+        "span_id": "span-2",
+        "start_ms": 50
+      },
+      {
+        "children": [
+          "span-4"
+        ],
+        "duration_ms": 200,
+        "end_ms": 300,
+        "name": "request:R02",
+        "parent_id": null,
+        "span_id": "span-3",
+        "start_ms": 100
+      },
+      {
+        "children": [],
+        "duration_ms": 100,
+        "end_ms": 300,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-3",
+        "span_id": "span-4",
+        "start_ms": 200
+      },
+      {
+        "children": [
+          "span-6"
+        ],
+        "duration_ms": 300,
+        "end_ms": 600,
+        "name": "request:R03",
+        "parent_id": null,
+        "span_id": "span-5",
+        "start_ms": 300
+      },
+      {
+        "children": [],
+        "duration_ms": 150,
+        "end_ms": 600,
+        "name": "model_call:alpha-large",
+        "parent_id": "span-5",
+        "span_id": "span-6",
+        "start_ms": 450
+      },
+      {
+        "children": [
+          "span-8"
+        ],
+        "duration_ms": 400,
+        "end_ms": 1000,
+        "name": "request:R04",
+        "parent_id": null,
+        "span_id": "span-7",
+        "start_ms": 600
+      },
+      {
+        "children": [],
+        "duration_ms": 200,
+        "end_ms": 1000,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-7",
+        "span_id": "span-8",
+        "start_ms": 800
+      },
+      {
+        "children": [
+          "span-10"
+        ],
+        "duration_ms": 500,
+        "end_ms": 1500,
+        "name": "request:R05",
+        "parent_id": null,
+        "span_id": "span-9",
+        "start_ms": 1000
+      },
+      {
+        "children": [],
+        "duration_ms": 250,
+        "end_ms": 1500,
+        "name": "model_call:alpha-large",
+        "parent_id": "span-9",
+        "span_id": "span-10",
+        "start_ms": 1250
+      },
+      {
+        "children": [
+          "span-12"
+        ],
+        "duration_ms": 600,
+        "end_ms": 2100,
+        "name": "request:R06",
+        "parent_id": null,
+        "span_id": "span-11",
+        "start_ms": 1500
+      },
+      {
+        "children": [],
+        "duration_ms": 300,
+        "end_ms": 2100,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-11",
+        "span_id": "span-12",
+        "start_ms": 1800
+      },
+      {
+        "children": [
+          "span-14"
+        ],
+        "duration_ms": 700,
+        "end_ms": 2800,
+        "name": "request:R07",
+        "parent_id": null,
+        "span_id": "span-13",
+        "start_ms": 2100
+      },
+      {
+        "children": [],
+        "duration_ms": 350,
+        "end_ms": 2800,
+        "name": "model_call:alpha-large",
+        "parent_id": "span-13",
+        "span_id": "span-14",
+        "start_ms": 2450
+      },
+      {
+        "children": [
+          "span-16"
+        ],
+        "duration_ms": 800,
+        "end_ms": 3600,
+        "name": "request:R08",
+        "parent_id": null,
+        "span_id": "span-15",
+        "start_ms": 2800
+      },
+      {
+        "children": [],
+        "duration_ms": 400,
+        "end_ms": 3600,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-15",
+        "span_id": "span-16",
+        "start_ms": 3200
+      },
+      {
+        "children": [
+          "span-18"
+        ],
+        "duration_ms": 900,
+        "end_ms": 4500,
+        "name": "request:R09",
+        "parent_id": null,
+        "span_id": "span-17",
+        "start_ms": 3600
+      },
+      {
+        "children": [],
+        "duration_ms": 450,
+        "end_ms": 4500,
+        "name": "model_call:alpha-large",
+        "parent_id": "span-17",
+        "span_id": "span-18",
+        "start_ms": 4050
+      },
+      {
+        "children": [
+          "span-20"
+        ],
+        "duration_ms": 1000,
+        "end_ms": 5500,
+        "name": "request:R10",
+        "parent_id": null,
+        "span_id": "span-19",
+        "start_ms": 4500
+      },
+      {
+        "children": [],
+        "duration_ms": 500,
+        "end_ms": 5500,
+        "name": "model_call:alpha-small",
+        "parent_id": "span-19",
+        "span_id": "span-20",
+        "start_ms": 5000
+      }
+    ]
+  }
+}
