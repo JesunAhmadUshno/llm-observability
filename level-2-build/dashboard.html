@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>LLM Observability Dashboard</title></head><body>
+<h1>LLM Observability Dashboard</h1>
+<p>Simulated requests only. No real LLM was called. Token counts use the stated proxy, not a real tokenizer.</p>
+<h2>Totals</h2>
+<table>
+<tr><th>Measure</th><th>Value</th></tr>
+<tr><td>Requests</td><td>60</td></tr>
+<tr><td>Prompt tokens</td><td>876</td></tr>
+<tr><td>Completion tokens</td><td>1332</td></tr>
+<tr><td>Total tokens</td><td>2208</td></tr>
+<tr><td>Total cost USD</td><td>1.06</td></tr>
+<tr><td>Total cost USD (precise)</td><td>1.062</td></tr>
+<tr><td>Mean latency ms</td><td>333.167</td></tr>
+<tr><td>p50 latency ms</td><td>315</td></tr>
+<tr><td>p95 latency ms</td><td>561</td></tr>
+<tr><td>Spans</td><td>180</td></tr>
+</table>
+<h2>Per-model</h2>
+<table>
+<tr><th>Model</th><th>Count</th><th>Total tokens</th><th>Cost USD</th><th>Mean latency ms</th><th>p50 ms</th><th>p95 ms</th></tr>
+<tr><td>alpha-large</td><td>30</td><td>1104</td><td>0.885</td><td>403.333</td><td>397</td><td>585</td></tr>
+<tr><td>alpha-small</td><td>30</td><td>1104</td><td>0.177</td><td>263.0</td><td>244</td><td>392</td></tr>
+</table>
+<h2>Requests and traces</h2>
+<ul>
+<li>B01 model=alpha-small tokens=37 cost=0.006 latency_ms=100 prompt_version=v1 root_span=span-1</li>
+<li>B02 model=alpha-large tokens=35 cost=0.0285 latency_ms=253 prompt_version=v1 root_span=span-1</li>
+<li>B03 model=alpha-small tokens=37 cost=0.0059 latency_ms=174 prompt_version=v1 root_span=span-1</li>
+<li>B04 model=alpha-large tokens=37 cost=0.0295 latency_ms=359 prompt_version=v1 root_span=span-1</li>
+<li>B05 model=alpha-small tokens=38 cost=0.006 latency_ms=248 prompt_version=v1 root_span=span-1</li>
+<li>B06 model=alpha-large tokens=37 cost=0.03 latency_ms=465 prompt_version=v1 root_span=span-1</li>
+<li>B07 model=alpha-small tokens=35 cost=0.0057 latency_ms=322 prompt_version=v1 root_span=span-1</li>
+<li>B08 model=alpha-large tokens=37 cost=0.0295 latency_ms=571 prompt_version=v1 root_span=span-1</li>
+<li>B09 model=alpha-small tokens=37 cost=0.0059 latency_ms=396 prompt_version=v1 root_span=span-1</li>
+<li>B10 model=alpha-large tokens=38 cost=0.03 latency_ms=277 prompt_version=v1 root_span=span-1</li>
+<li>B11 model=alpha-small tokens=37 cost=0.006 latency_ms=170 prompt_version=v2 root_span=span-1</li>
+<li>B12 model=alpha-large tokens=35 cost=0.0285 latency_ms=383 prompt_version=v2 root_span=span-1</li>
+<li>B13 model=alpha-small tokens=37 cost=0.0059 latency_ms=244 prompt_version=v2 root_span=span-1</li>
+<li>B14 model=alpha-large tokens=37 cost=0.0295 latency_ms=489 prompt_version=v2 root_span=span-1</li>
+<li>B15 model=alpha-small tokens=38 cost=0.006 latency_ms=318 prompt_version=v2 root_span=span-1</li>
+<li>B16 model=alpha-large tokens=37 cost=0.03 latency_ms=595 prompt_version=v2 root_span=span-1</li>
+<li>B17 model=alpha-small tokens=35 cost=0.0057 latency_ms=392 prompt_version=v2 root_span=span-1</li>
+<li>B18 model=alpha-large tokens=37 cost=0.0295 latency_ms=301 prompt_version=v2 root_span=span-1</li>
+<li>B19 model=alpha-small tokens=37 cost=0.0059 latency_ms=166 prompt_version=v2 root_span=span-1</li>
+<li>B20 model=alpha-large tokens=38 cost=0.03 latency_ms=407 prompt_version=v2 root_span=span-1</li>
+<li>B21 model=alpha-small tokens=37 cost=0.006 latency_ms=240 prompt_version=v1 root_span=span-1</li>
+<li>B22 model=alpha-large tokens=35 cost=0.0285 latency_ms=513 prompt_version=v1 root_span=span-1</li>
+<li>B23 model=alpha-small tokens=37 cost=0.0059 latency_ms=314 prompt_version=v1 root_span=span-1</li>
+<li>B24 model=alpha-large tokens=37 cost=0.0295 latency_ms=219 prompt_version=v1 root_span=span-1</li>
+<li>B25 model=alpha-small tokens=38 cost=0.006 latency_ms=388 prompt_version=v1 root_span=span-1</li>
+<li>B26 model=alpha-large tokens=37 cost=0.03 latency_ms=325 prompt_version=v1 root_span=span-1</li>
+<li>B27 model=alpha-small tokens=35 cost=0.0057 latency_ms=162 prompt_version=v1 root_span=span-1</li>
+<li>B28 model=alpha-large tokens=37 cost=0.0295 latency_ms=431 prompt_version=v1 root_span=span-1</li>
+<li>B29 model=alpha-small tokens=37 cost=0.0059 latency_ms=236 prompt_version=v1 root_span=span-1</li>
+<li>B30 model=alpha-large tokens=38 cost=0.03 latency_ms=537 prompt_version=v1 root_span=span-1</li>
+<li>B31 model=alpha-small tokens=37 cost=0.006 latency_ms=310 prompt_version=v2 root_span=span-1</li>
+<li>B32 model=alpha-large tokens=35 cost=0.0285 latency_ms=243 prompt_version=v2 root_span=span-1</li>
+<li>B33 model=alpha-small tokens=37 cost=0.0059 latency_ms=384 prompt_version=v2 root_span=span-1</li>
+<li>B34 model=alpha-large tokens=37 cost=0.0295 latency_ms=349 prompt_version=v2 root_span=span-1</li>
+<li>B35 model=alpha-small tokens=38 cost=0.006 latency_ms=158 prompt_version=v2 root_span=span-1</li>
+<li>B36 model=alpha-large tokens=37 cost=0.03 latency_ms=455 prompt_version=v2 root_span=span-1</li>
+<li>B37 model=alpha-small tokens=35 cost=0.0057 latency_ms=232 prompt_version=v2 root_span=span-1</li>
+<li>B38 model=alpha-large tokens=37 cost=0.0295 latency_ms=561 prompt_version=v2 root_span=span-1</li>
+<li>B39 model=alpha-small tokens=37 cost=0.0059 latency_ms=306 prompt_version=v2 root_span=span-1</li>
+<li>B40 model=alpha-large tokens=38 cost=0.03 latency_ms=267 prompt_version=v2 root_span=span-1</li>
+<li>B41 model=alpha-small tokens=37 cost=0.006 latency_ms=380 prompt_version=v1 root_span=span-1</li>
+<li>B42 model=alpha-large tokens=35 cost=0.0285 latency_ms=373 prompt_version=v1 root_span=span-1</li>
+<li>B43 model=alpha-small tokens=37 cost=0.0059 latency_ms=154 prompt_version=v1 root_span=span-1</li>
+<li>B44 model=alpha-large tokens=37 cost=0.0295 latency_ms=479 prompt_version=v1 root_span=span-1</li>
+<li>B45 model=alpha-small tokens=38 cost=0.006 latency_ms=228 prompt_version=v1 root_span=span-1</li>
+<li>B46 model=alpha-large tokens=37 cost=0.03 latency_ms=585 prompt_version=v1 root_span=span-1</li>
+<li>B47 model=alpha-small tokens=35 cost=0.0057 latency_ms=302 prompt_version=v1 root_span=span-1</li>
+<li>B48 model=alpha-large tokens=37 cost=0.0295 latency_ms=291 prompt_version=v1 root_span=span-1</li>
+<li>B49 model=alpha-small tokens=37 cost=0.0059 latency_ms=376 prompt_version=v1 root_span=span-1</li>
+<li>B50 model=alpha-large tokens=38 cost=0.03 latency_ms=397 prompt_version=v1 root_span=span-1</li>
+<li>B51 model=alpha-small tokens=37 cost=0.006 latency_ms=150 prompt_version=v2 root_span=span-1</li>
+<li>B52 model=alpha-large tokens=35 cost=0.0285 latency_ms=503 prompt_version=v2 root_span=span-1</li>
+<li>B53 model=alpha-small tokens=37 cost=0.0059 latency_ms=224 prompt_version=v2 root_span=span-1</li>
+<li>B54 model=alpha-large tokens=37 cost=0.0295 latency_ms=209 prompt_version=v2 root_span=span-1</li>
+<li>B55 model=alpha-small tokens=38 cost=0.006 latency_ms=298 prompt_version=v2 root_span=span-1</li>
+<li>B56 model=alpha-large tokens=37 cost=0.03 latency_ms=315 prompt_version=v2 root_span=span-1</li>
+<li>B57 model=alpha-small tokens=35 cost=0.0057 latency_ms=372 prompt_version=v2 root_span=span-1</li>
+<li>B58 model=alpha-large tokens=37 cost=0.0295 latency_ms=421 prompt_version=v2 root_span=span-1</li>
+<li>B59 model=alpha-small tokens=37 cost=0.0059 latency_ms=146 prompt_version=v2 root_span=span-1</li>
+<li>B60 model=alpha-large tokens=38 cost=0.03 latency_ms=527 prompt_version=v2 root_span=span-1</li>
+</ul>
+<h2>Spans</h2>
+<ul>
+<li>span-1 name=request:B01 parent=None duration_ms=100</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=20</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=80</li>
+<li>span-1 name=request:B02 parent=None duration_ms=253</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=50</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=203</li>
+<li>span-1 name=request:B03 parent=None duration_ms=174</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=34</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=140</li>
+<li>span-1 name=request:B04 parent=None duration_ms=359</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=71</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=288</li>
+<li>span-1 name=request:B05 parent=None duration_ms=248</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=49</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=199</li>
+<li>span-1 name=request:B06 parent=None duration_ms=465</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=93</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=372</li>
+<li>span-1 name=request:B07 parent=None duration_ms=322</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=64</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=258</li>
+<li>span-1 name=request:B08 parent=None duration_ms=571</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=114</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=457</li>
+<li>span-1 name=request:B09 parent=None duration_ms=396</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=79</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=317</li>
+<li>span-1 name=request:B10 parent=None duration_ms=277</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=55</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=222</li>
+<li>span-1 name=request:B11 parent=None duration_ms=170</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=34</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=136</li>
+<li>span-1 name=request:B12 parent=None duration_ms=383</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=76</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=307</li>
+<li>span-1 name=request:B13 parent=None duration_ms=244</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=48</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=196</li>
+<li>span-1 name=request:B14 parent=None duration_ms=489</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=97</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=392</li>
+<li>span-1 name=request:B15 parent=None duration_ms=318</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=63</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=255</li>
+<li>span-1 name=request:B16 parent=None duration_ms=595</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=119</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=476</li>
+<li>span-1 name=request:B17 parent=None duration_ms=392</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=78</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=314</li>
+<li>span-1 name=request:B18 parent=None duration_ms=301</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=60</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=241</li>
+<li>span-1 name=request:B19 parent=None duration_ms=166</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=33</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=133</li>
+<li>span-1 name=request:B20 parent=None duration_ms=407</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=81</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=326</li>
+<li>span-1 name=request:B21 parent=None duration_ms=240</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=48</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=192</li>
+<li>span-1 name=request:B22 parent=None duration_ms=513</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=102</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=411</li>
+<li>span-1 name=request:B23 parent=None duration_ms=314</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=62</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=252</li>
+<li>span-1 name=request:B24 parent=None duration_ms=219</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=43</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=176</li>
+<li>span-1 name=request:B25 parent=None duration_ms=388</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=77</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=311</li>
+<li>span-1 name=request:B26 parent=None duration_ms=325</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=65</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=260</li>
+<li>span-1 name=request:B27 parent=None duration_ms=162</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=32</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=130</li>
+<li>span-1 name=request:B28 parent=None duration_ms=431</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=86</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=345</li>
+<li>span-1 name=request:B29 parent=None duration_ms=236</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=47</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=189</li>
+<li>span-1 name=request:B30 parent=None duration_ms=537</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=107</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=430</li>
+<li>span-1 name=request:B31 parent=None duration_ms=310</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=62</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=248</li>
+<li>span-1 name=request:B32 parent=None duration_ms=243</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=48</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=195</li>
+<li>span-1 name=request:B33 parent=None duration_ms=384</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=76</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=308</li>
+<li>span-1 name=request:B34 parent=None duration_ms=349</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=69</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=280</li>
+<li>span-1 name=request:B35 parent=None duration_ms=158</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=31</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=127</li>
+<li>span-1 name=request:B36 parent=None duration_ms=455</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=91</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=364</li>
+<li>span-1 name=request:B37 parent=None duration_ms=232</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=46</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=186</li>
+<li>span-1 name=request:B38 parent=None duration_ms=561</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=112</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=449</li>
+<li>span-1 name=request:B39 parent=None duration_ms=306</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=61</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=245</li>
+<li>span-1 name=request:B40 parent=None duration_ms=267</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=53</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=214</li>
+<li>span-1 name=request:B41 parent=None duration_ms=380</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=76</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=304</li>
+<li>span-1 name=request:B42 parent=None duration_ms=373</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=74</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=299</li>
+<li>span-1 name=request:B43 parent=None duration_ms=154</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=30</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=124</li>
+<li>span-1 name=request:B44 parent=None duration_ms=479</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=95</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=384</li>
+<li>span-1 name=request:B45 parent=None duration_ms=228</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=45</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=183</li>
+<li>span-1 name=request:B46 parent=None duration_ms=585</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=117</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=468</li>
+<li>span-1 name=request:B47 parent=None duration_ms=302</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=60</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=242</li>
+<li>span-1 name=request:B48 parent=None duration_ms=291</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=58</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=233</li>
+<li>span-1 name=request:B49 parent=None duration_ms=376</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=75</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=301</li>
+<li>span-1 name=request:B50 parent=None duration_ms=397</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=79</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=318</li>
+<li>span-1 name=request:B51 parent=None duration_ms=150</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=30</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=120</li>
+<li>span-1 name=request:B52 parent=None duration_ms=503</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=100</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=403</li>
+<li>span-1 name=request:B53 parent=None duration_ms=224</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=44</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=180</li>
+<li>span-1 name=request:B54 parent=None duration_ms=209</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=41</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=168</li>
+<li>span-1 name=request:B55 parent=None duration_ms=298</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=59</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=239</li>
+<li>span-1 name=request:B56 parent=None duration_ms=315</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=63</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=252</li>
+<li>span-1 name=request:B57 parent=None duration_ms=372</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=74</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=298</li>
+<li>span-1 name=request:B58 parent=None duration_ms=421</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=84</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=337</li>
+<li>span-1 name=request:B59 parent=None duration_ms=146</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=29</li>
+<li>span-3 name=model_call:alpha-small parent=span-1 duration_ms=117</li>
+<li>span-1 name=request:B60 parent=None duration_ms=527</li>
+<li>span-2 name=prepare parent=span-1 duration_ms=105</li>
+<li>span-3 name=model_call:alpha-large parent=span-1 duration_ms=422</li>
+</ul>
+</body></html>
