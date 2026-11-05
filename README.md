@@ -76,6 +76,28 @@ Measured 2026-11-05 with level-3-deep/run_deep.py on the Muse VM, Python 3.12. A
 
 PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
 
+## Fan-out
+
+Written fan-out set for v1.0, dated 2026-11-05, in fanout/:
+
+- fanout/blog-post.md: "Watching the Machine Think", the full
+  story with the main results claim gated by Jev claim_check
+  (model jev-1.13.0, noul 0.78, route REVIEW, no block).
+- fanout/tutorial.md: course module P12-llm-observability. Every
+  command in it was executed and passed on 2026-11-05 (all three
+  runners, all per-level tests, full suite at 47 tests).
+- fanout/website-page.md: project page copy only, not published.
+- fanout/linkedin-post.md: DRAFT NOT POSTED, link as the
+  first-comment line per the LinkedIn rule.
+- fanout/paper-candidate.md: drift detection note at CANDIDATE.
+  Submission is Jesun's tap, nothing submitted.
+- fanout/release-notes.md: draft notes for the live releases
+  v0.1, v0.5, and v1.0.
+
+Publicity grades and the channel log are in PUBLICITY.md. Overall
+fan-out grade: 9,533 of 10,000. The loop never posts to social:
+all social channels are held with named reasons in PUBLICITY.md.
+
 ## License
 
 Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0. Ruled in D-V3-11, 2026-11-04.
