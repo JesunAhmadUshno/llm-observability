@@ -1,0 +1,14 @@
+# Lint scope for this repo (Actions polish pack, 2026-11-05).
+# E: pycodestyle errors, F: pyflakes, I: import order.
+# Level folders and tests load sibling modules by path: each file inserts
+# its folder into sys.path before importing, so those imports carry
+# "# noqa: E402" markers, which are live under this selection.
+# Line length is 120. Import blocks were reorganised per ruff fix
+# output with no change to any imported name or string value.
+# One pre-existing benchmark_label string line in
+# level-2-build/run_build.py is 134 characters and passes under its
+# "# noqa: E501" marker; the string itself is unchanged so the
+# generated results files stay identical, recorded here not hidden.
+line-length = 120
+[lint]
+select = ["E", "F", "I"]

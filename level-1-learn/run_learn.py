@@ -16,8 +16,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from observability import (ManualClock, RequestLogger, Tracer,  # noqa: E402
-                           VersionRegistry, aggregate, compute_cost)
+from observability import ManualClock, RequestLogger, Tracer, VersionRegistry, aggregate, compute_cost  # noqa: E402
 
 
 def load_requests():
