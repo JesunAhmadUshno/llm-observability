@@ -1,0 +1,229 @@
+{
+  "baseline_params": {
+    "cost_per_token": 0.0006,
+    "latency_mean_ms": 500.0,
+    "pass_rate": 0.92,
+    "tokens_mean": 1500.0
+  },
+  "experiment": "seeded_simulated_drift_experiment",
+  "n_per_window": 1000,
+  "quality_label": "simulated: quality_pass is a simulated logged field, not real model quality",
+  "seeds": {
+    "baseline": 1201,
+    "control_no_drift": 2202,
+    "latency_cost_drift": 3203,
+    "quality_drift": 4204
+  },
+  "success_criteria": {
+    "all_passed": true,
+    "control_no_alert_or_low_only": true,
+    "latency_cost_alert_fired": true,
+    "quality_alert_fired": true
+  },
+  "windows": {
+    "control_no_drift": {
+      "alert_count": 0,
+      "alerts": [],
+      "baseline_count": 1000,
+      "current_count": 1000,
+      "has_alert": false,
+      "overall_severity": "none",
+      "per_metric": {
+        "cost_usd": {
+          "alert": false,
+          "baseline_mean": 0.900578,
+          "current_mean": 0.903269,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.014681,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "cost_usd",
+          "psi": 0.009807,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        },
+        "latency_ms": {
+          "alert": false,
+          "baseline_mean": 498.366793,
+          "current_mean": 501.57366,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.040373,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "latency_ms",
+          "psi": 0.025905,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        },
+        "quality_pass_rate_simulated": {
+          "alert": false,
+          "alert_drop_threshold": 0.1,
+          "baseline_pass_rate": 0.909,
+          "current_pass_rate": 0.933,
+          "drop": -0.024,
+          "metric": "quality_pass_rate_simulated",
+          "note": "quality_pass is a simulated logged field, not real model quality",
+          "severity": "none",
+          "warning_drop_threshold": 0.05,
+          "z": 1.989541,
+          "z_alert_threshold": 1.96
+        },
+        "total_tokens": {
+          "alert": false,
+          "baseline_mean": 1503.243,
+          "current_mean": 1504.807,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.005343,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "total_tokens",
+          "psi": 0.009285,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        }
+      }
+    },
+    "latency_cost_drift": {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "metric": "latency_ms",
+          "severity": "high"
+        },
+        {
+          "metric": "total_tokens",
+          "severity": "high"
+        },
+        {
+          "metric": "cost_usd",
+          "severity": "high"
+        }
+      ],
+      "baseline_count": 1000,
+      "current_count": 1000,
+      "has_alert": true,
+      "overall_severity": "high",
+      "per_metric": {
+        "cost_usd": {
+          "alert": true,
+          "baseline_mean": 0.900578,
+          "current_mean": 1.972592,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 4.433347,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "cost_usd",
+          "psi": 8.283089,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "high"
+        },
+        "latency_ms": {
+          "alert": true,
+          "baseline_mean": 498.366793,
+          "current_mean": 853.769848,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 4.480065,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "latency_ms",
+          "psi": 8.045714,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "high"
+        },
+        "quality_pass_rate_simulated": {
+          "alert": false,
+          "alert_drop_threshold": 0.1,
+          "baseline_pass_rate": 0.909,
+          "current_pass_rate": 0.895,
+          "drop": 0.014,
+          "metric": "quality_pass_rate_simulated",
+          "note": "quality_pass is a simulated logged field, not real model quality",
+          "severity": "none",
+          "warning_drop_threshold": 0.05,
+          "z": -1.052923,
+          "z_alert_threshold": 1.96
+        },
+        "total_tokens": {
+          "alert": true,
+          "baseline_mean": 1503.243,
+          "current_mean": 2194.422,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 2.339562,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "total_tokens",
+          "psi": 4.427765,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "high"
+        }
+      }
+    },
+    "quality_drift": {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "metric": "quality_pass_rate_simulated",
+          "severity": "high"
+        }
+      ],
+      "baseline_count": 1000,
+      "current_count": 1000,
+      "has_alert": true,
+      "overall_severity": "high",
+      "per_metric": {
+        "cost_usd": {
+          "alert": false,
+          "baseline_mean": 0.900578,
+          "current_mean": 0.90982,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.050293,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "cost_usd",
+          "psi": 0.006129,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        },
+        "latency_ms": {
+          "alert": false,
+          "baseline_mean": 498.366793,
+          "current_mean": 512.586458,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.180196,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "latency_ms",
+          "psi": 0.051372,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        },
+        "quality_pass_rate_simulated": {
+          "alert": true,
+          "alert_drop_threshold": 0.1,
+          "baseline_pass_rate": 0.909,
+          "current_pass_rate": 0.628,
+          "drop": 0.281,
+          "metric": "quality_pass_rate_simulated",
+          "note": "quality_pass is a simulated logged field, not real model quality",
+          "severity": "high",
+          "warning_drop_threshold": 0.05,
+          "z": -14.896831,
+          "z_alert_threshold": 1.96
+        },
+        "total_tokens": {
+          "alert": false,
+          "baseline_mean": 1503.243,
+          "current_mean": 1515.399,
+          "mean_shift_alert_threshold": 1.0,
+          "mean_shift_pooled_sd": 0.041302,
+          "mean_shift_warning_threshold": 0.5,
+          "metric": "total_tokens",
+          "psi": 0.002452,
+          "psi_alert_threshold": 0.25,
+          "psi_warning_threshold": 0.1,
+          "severity": "none"
+        }
+      }
+    }
+  }
+}

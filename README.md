@@ -2,8 +2,8 @@
 
 LLM operations: request logging, tracing, a version registry, drift detection and alerts.
 
-Status: Learn DONE and Build DONE (2026-11-05, ROADMAP-V3-BATCH). Level 1 is built, tested, and measured below: on 10 simulated requests the logger recorded 22,750 total tokens at a total cost of 9.80 USD from the stated teaching price table, mean latency 550.0 ms, 20 trace spans, 21 unit tests passing. No real LLM was called. Build adds a persistent JSONL store, a simulated service with nested spans, registry diff, and a static dashboard over 60 simulated requests (details below). Deep is not started.
-Project: P12. Fleet node: BlackBoxV2. Wave: Wave 5. Learn was run on the Muse VM (CPU); see the level README for the named deduction.
+Status: Learn DONE, Build DONE, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH, v1.0). Level 1 is built, tested, and measured below: on 10 simulated requests the logger recorded 22,750 total tokens at a total cost of 9.80 USD from the stated teaching price table, mean latency 550.0 ms, 20 trace spans, 21 unit tests passing. No real LLM was called. Build adds a persistent JSONL store, a simulated service with nested spans, registry diff, and a static dashboard over 60 simulated requests (details below). Deep adds quality drift detection and alerts over seeded simulated windows (details below). Quality in Deep is a simulated logged field, never real model quality.
+Project: P12. Fleet node: BlackBoxV2. Wave: Wave 5. All levels were run on the Muse VM (CPU), not BlackBoxV2; see the level READMEs for the named deduction.
 
 ## Start here
 
@@ -54,6 +54,23 @@ Measured 2026-11-05 with level-2-build/run_build.py on the Muse VM, Python 3.12.
 | Unit tests | 39 passed (21 Learn plus 18 Build) |
 | Determinism | results_build.json identical across two runs except benchmark_reload_aggregate_ms, the named timing field |
 | Build grade | 8,700 of 10,000 (deductions in the level README) |
+
+## Deep results
+
+Measured 2026-11-05 with level-3-deep/run_deep.py on the Muse VM, Python 3.12. All windows are seeded and simulated, 1000 records each. Quality is a simulated logged field (quality_pass), labelled simulated, not real model quality. Statistics: PSI on binned distributions, mean shift in pooled SD units, and a two-proportion z check for pass rate.
+
+| Window | Overall severity | Alerts | Headline numbers |
+| --- | --- | --- | --- |
+| control_no_drift | none | 0 | latency PSI 0.025905, tokens PSI 0.009285, cost PSI 0.009807, simulated pass 0.909 to 0.933 |
+| latency_cost_drift | high | 3 | latency PSI 8.045714 (mean 498.367 to 853.770), cost PSI 8.283089 (mean 0.900578 to 1.972592), tokens PSI 4.427765 |
+| quality_drift | high | 1 | simulated pass rate 0.909 to 0.628, drop 0.281, z -14.896831; other metrics severity none |
+
+| Test | Result |
+| --- | --- |
+| Success criteria | all passed (control no alert, both drift windows alert) |
+| Unit tests | 47 passed (39 prior plus 8 Deep) |
+| Determinism | results_deep.json identical across two runs, no timing field |
+| Deep grade | 8,500 of 10,000 (deductions in level-3-deep/README.md) |
 
 ## Novelty
 
