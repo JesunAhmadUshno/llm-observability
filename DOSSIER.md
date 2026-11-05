@@ -12,7 +12,7 @@ Current demand evidence: hiring value 4 of 5 (required duty at Mistral, v2 rank 
 
 ## Ship note (2026-11-05)
 
-Level 1 Learn shipped as v0.1 under the December Compression Protocol (Sprint 2 early pull): request logging, tracing spans, and a prompt and model version registry, standard library only, on 10 labelled simulated requests. Measured results and the grade (8,700 of 10,000) are in level-1-learn/README.md. Build and Deep are not started.
+Level 1 Learn shipped as v0.1 under the December Compression Protocol (Sprint 2 early pull): request logging, tracing spans, and a prompt and model version registry, standard library only, on 10 labelled simulated requests. Measured results and the grade (8,700 of 10,000) are in level-1-learn/README.md. Level 2 Build shipped as v0.5 (2026-11-05): a persistent JSONL LogStore, an ObservabilityService with nested spans over 60 simulated requests, registry diff, and a static HTML dashboard, standard library only, grade 8,700 of 10,000 in level-2-build/README.md. Deep is not started.
 
 ## Future
 
