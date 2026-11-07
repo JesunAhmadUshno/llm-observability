@@ -8,6 +8,8 @@ sys.path.insert(0, os.path.join(ROOT, "level-3-deep"))
 from drift import (  # noqa: E402
     assess_pass_rate,
     detect_drift,
+    ks_critical,
+    ks_statistic,
     mean_shift_pooled_sd,
     population_stability_index,
     two_proportion_z,
@@ -46,6 +48,43 @@ class TestPassRate(unittest.TestCase):
         r = assess_pass_rate(base, cur)
         self.assertTrue(r["alert"])
         self.assertEqual(r["severity"], "high")
+
+
+class TestZeroSE(unittest.TestCase):
+    def test_all_pass_both_windows_gives_zero_z(self):
+        # Pooled rate 1.0 means SE is 0; both rates are then equal, so z is 0 by definition.
+        self.assertEqual(two_proportion_z(10, 10, 20, 20), (0.0, 1.0, 1.0))
+
+    def test_all_fail_both_windows_gives_zero_z(self):
+        self.assertEqual(two_proportion_z(0, 10, 0, 20), (0.0, 0.0, 0.0))
+
+
+class TestKS(unittest.TestCase):
+    def test_identical_is_zero(self):
+        data = [float(i) for i in range(50)]
+        self.assertEqual(ks_statistic(data, list(data)), 0.0)
+
+    def test_disjoint_is_one(self):
+        self.assertEqual(ks_statistic([1.0, 2.0, 3.0], [10.0, 11.0]), 1.0)
+
+    def test_known_value_with_ties(self):
+        # ECDFs after 2: base 3/4, cur 0/2, so D = 0.75 (ties advance together).
+        self.assertEqual(ks_statistic([1.0, 2.0, 2.0, 3.0], [3.0, 4.0]), 0.75)
+
+    def test_critical_value_shrinks_with_n(self):
+        self.assertGreater(ks_critical(100, 100, 0.05), ks_critical(1000, 1000, 0.05))
+        self.assertAlmostEqual(ks_critical(1000, 1000, 0.05), 1.358099 * (2 / 1000) ** 0.5, places=5)
+
+    def test_report_carries_ks_and_bonferroni_fields(self):
+        base = generate_window(1, 500.0, 1500.0, 0.0006, 0.92)
+        cur = generate_window(2, 500.0, 1500.0, 0.0006, 0.92)
+        report = detect_drift(base, cur)
+        lat = report["per_metric"]["latency_ms"]
+        self.assertIn("ks_statistic", lat)
+        self.assertEqual(lat["ks_reject"], lat["ks_statistic"] > lat["ks_critical_bonferroni"])
+        pr = report["per_metric"]["quality_pass_rate_simulated"]
+        self.assertGreater(pr["z_bonferroni_threshold"], 1.96)
+        self.assertEqual(pr["direction"], "drop only")
 
 
 class TestAlertLogic(unittest.TestCase):
