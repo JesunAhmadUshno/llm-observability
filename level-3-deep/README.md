@@ -41,6 +41,45 @@ Tests: 47 passed in total (39 prior plus 8 Deep). Determinism: results_deep.json
     python3 level-3-deep/run_deep.py
     python3 -m unittest discover -s tests -v
 
+## Calibration over seeds
+
+`python3 level-3-deep/calibrate.py` (stdlib, CPU, about 4 s) repeats the run_deep generator over 50 seed pairs per setting (repetition r uses baseline seed 10000 + 2r and current seed 10000 + 2r + 1) and writes `results_calibration.json`. All windows are simulated. Intervals are Wilson 95%.
+
+False alerts on the no-drift control (any metric alerting, 10 PSI bins):
+
+| Records per window | Runs with any alert | Wilson 95% |
+| --- | --- | --- |
+| 100 | 50/50 | 0.93 to 1.00 |
+| 200 | 38/50 | 0.63 to 0.86 |
+| 500 | 0/50 | 0.00 to 0.07 |
+| 1,000 | 0/50 | 0.00 to 0.07 |
+| 2,000 | 0/50 | 0.00 to 0.07 |
+
+Detection power at N = 1,000 for a latency shift (repo rule: PSI or mean-shift alert; baseline: two-sample KS rejecting at alpha 0.05/3, asymptotic critical value):
+
+| Shift ms (SD) | Repo rule | KS baseline |
+| --- | --- | --- |
+| 5 (0.0625) | 0/50 (0.00 to 0.07) | 7/50 (0.07 to 0.26) |
+| 10 (0.125) | 0/50 (0.00 to 0.07) | 28/50 (0.42 to 0.69) |
+| 20 (0.25) | 15/50 (0.19 to 0.44) | 50/50 (0.93 to 1.00) |
+| 40 (0.5) | 50/50 (0.93 to 1.00) | 50/50 (0.93 to 1.00) |
+| 80 (1) | 50/50 (0.93 to 1.00) | 50/50 (0.93 to 1.00) |
+
+Detection power at N = 1,000 for a simulated pass-rate drop (repo rule: drop and |z| threshold; Bonferroni: the survives_bonferroni field of detect_drift, two-sided |z| at alpha 0.05/4):
+
+| True drop | Repo rule | Bonferroni z |
+| --- | --- | --- |
+| 0.02 | 0/50 (0.00 to 0.07) | 7/50 (0.07 to 0.26) |
+| 0.04 | 11/50 (0.13 to 0.35) | 34/50 (0.54 to 0.79) |
+| 0.06 | 37/50 (0.60 to 0.84) | 50/50 (0.93 to 1.00) |
+| 0.08 | 50/50 (0.93 to 1.00) | 50/50 (0.93 to 1.00) |
+| 0.1 | 50/50 (0.93 to 1.00) | 50/50 (0.93 to 1.00) |
+| 0.12 | 50/50 (0.93 to 1.00) | 50/50 (0.93 to 1.00) |
+
+A one-sided CUSUM (k = 0.5 SD, h = 5 SD) on a latency stream of 500 records before and 500 after a 40 ms shift false-alarmed before the change in 21/50 runs, detected the change in 29 of the rest, and missed 0. Median detection delay 32 records (range 5 to 131).
+
+What this shows: on this generator the thresholds are too sensitive below about 500 records per window, and the PSI / mean-shift rule is much less powerful than KS for small latency shifts. It says nothing about real traffic.
+
 ## Failure modes
 
 - Simulated only: all windows are synthetic. A detector that separates these seeded windows may fail on real traffic with seasonality, model mix changes, or correlated incidents.
@@ -50,6 +89,7 @@ Tests: 47 passed in total (39 prior plus 8 Deep). Determinism: results_deep.json
 - Threshold limits: thresholds are documented constants, not learned. They will be wrong for some real distributions and need calibration per service.
 - Cost and tokens are correlated here by construction (cost derives from tokens). Alerting on both can double-count one underlying change.
 - No alert delivery: alerts are data in JSON and return values only. No email, webhook, or paging channel exists in this level.
+- One-sided quality check: the pass-rate rule alerts only on drops (current below baseline). A rise in pass rate never alerts, by design.
 - Distribution shape: mean shift misses shape changes with the same mean; PSI catches some of those, but neither statistic proves a cause.
 
 ## Grade
