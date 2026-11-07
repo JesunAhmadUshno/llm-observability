@@ -30,3 +30,17 @@ jobs:
         run: python -m unittest discover -s tests -p "test_build*.py" -v
       - name: level 2 build runner
         run: python level-2-build/run_build.py
+      - name: level 3 deep tests
+        run: python -m unittest discover -s tests -p "test_deep*.py" -v
+      - name: level 3 deep runner and calibration
+        run: |
+          python level-3-deep/run_deep.py
+          python level-3-deep/calibrate.py
+      - name: committed results are reproduced byte for byte
+        # benchmark_reload_aggregate_ms is the one named timing field; every other line must match.
+        run: |
+          git diff --exit-code -- level-1-learn/results_learn.json level-2-build/store_build.jsonl \
+            level-2-build/dashboard.html level-3-deep/results_deep.json level-3-deep/results_calibration.json
+          if git diff -U0 -- level-2-build/results_build.json | grep '^[-+] ' | grep -v benchmark_reload_aggregate_ms; then
+            echo "results_build.json changed beyond the timing field"; exit 1
+          fi
