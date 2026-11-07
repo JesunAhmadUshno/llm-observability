@@ -1,0 +1,367 @@
+{
+  "baseline_params": {
+    "cost_per_token": 0.0006,
+    "latency_mean": 500.0,
+    "pass_rate": 0.92,
+    "tokens_mean": 1500.0
+  },
+  "bins": 10,
+  "cusum_latency": {
+    "delay_records_max": 131,
+    "delay_records_median": 32,
+    "delay_records_min": 5,
+    "detected": 29,
+    "false_alarm_before_change": {
+      "ci95": [
+        0.2938,
+        0.5577
+      ],
+      "count": 21,
+      "rate": 0.42,
+      "runs": 50
+    },
+    "h_sd": 5.0,
+    "k_sd": 0.5,
+    "missed": 0,
+    "post_change_records": 500,
+    "pre_change_records": 500,
+    "runs": 50,
+    "shift_ms": 40.0,
+    "shift_sd": 0.5
+  },
+  "experiment": "detector_calibration_over_seeds",
+  "false_alert": [
+    {
+      "any_alert": 50,
+      "any_alert_rate": 1.0,
+      "ci95": [
+        0.9287,
+        1.0
+      ],
+      "n": 100,
+      "per_metric_alerts": {
+        "cost_usd": 46,
+        "latency_ms": 43,
+        "quality_pass_rate_simulated": 1,
+        "total_tokens": 44
+      },
+      "runs": 50
+    },
+    {
+      "any_alert": 38,
+      "any_alert_rate": 0.76,
+      "ci95": [
+        0.6259,
+        0.857
+      ],
+      "n": 200,
+      "per_metric_alerts": {
+        "cost_usd": 20,
+        "latency_ms": 23,
+        "quality_pass_rate_simulated": 1,
+        "total_tokens": 17
+      },
+      "runs": 50
+    },
+    {
+      "any_alert": 0,
+      "any_alert_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.0713
+      ],
+      "n": 500,
+      "per_metric_alerts": {
+        "cost_usd": 0,
+        "latency_ms": 0,
+        "quality_pass_rate_simulated": 0,
+        "total_tokens": 0
+      },
+      "runs": 50
+    },
+    {
+      "any_alert": 0,
+      "any_alert_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.0713
+      ],
+      "n": 1000,
+      "per_metric_alerts": {
+        "cost_usd": 0,
+        "latency_ms": 0,
+        "quality_pass_rate_simulated": 0,
+        "total_tokens": 0
+      },
+      "runs": 50
+    },
+    {
+      "any_alert": 0,
+      "any_alert_rate": 0.0,
+      "ci95": [
+        0.0,
+        0.0713
+      ],
+      "n": 2000,
+      "per_metric_alerts": {
+        "cost_usd": 0,
+        "latency_ms": 0,
+        "quality_pass_rate_simulated": 0,
+        "total_tokens": 0
+      },
+      "runs": 50
+    }
+  ],
+  "label": "simulated: run_deep generator, quality_pass is a simulated logged field",
+  "power": {
+    "latency_shift": [
+      {
+        "ks": {
+          "ci95": [
+            0.0695,
+            0.2619
+          ],
+          "count": 7,
+          "rate": 0.14,
+          "runs": 50
+        },
+        "rule": {
+          "ci95": [
+            0.0,
+            0.0713
+          ],
+          "count": 0,
+          "rate": 0.0,
+          "runs": 50
+        },
+        "shift_ms": 5.0,
+        "shift_sd": 0.0625
+      },
+      {
+        "ks": {
+          "ci95": [
+            0.4231,
+            0.6884
+          ],
+          "count": 28,
+          "rate": 0.56,
+          "runs": 50
+        },
+        "rule": {
+          "ci95": [
+            0.0,
+            0.0713
+          ],
+          "count": 0,
+          "rate": 0.0,
+          "runs": 50
+        },
+        "shift_ms": 10.0,
+        "shift_sd": 0.125
+      },
+      {
+        "ks": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "rule": {
+          "ci95": [
+            0.191,
+            0.4375
+          ],
+          "count": 15,
+          "rate": 0.3,
+          "runs": 50
+        },
+        "shift_ms": 20.0,
+        "shift_sd": 0.25
+      },
+      {
+        "ks": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "rule": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "shift_ms": 40.0,
+        "shift_sd": 0.5
+      },
+      {
+        "ks": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "rule": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "shift_ms": 80.0,
+        "shift_sd": 1.0
+      }
+    ],
+    "n": 1000,
+    "pass_rate_drop": [
+      {
+        "bonferroni": {
+          "ci95": [
+            0.0695,
+            0.2619
+          ],
+          "count": 7,
+          "rate": 0.14,
+          "runs": 50
+        },
+        "pass_rate": 0.9,
+        "rule": {
+          "ci95": [
+            0.0,
+            0.0713
+          ],
+          "count": 0,
+          "rate": 0.0,
+          "runs": 50
+        },
+        "true_drop": 0.02
+      },
+      {
+        "bonferroni": {
+          "ci95": [
+            0.5419,
+            0.7924
+          ],
+          "count": 34,
+          "rate": 0.68,
+          "runs": 50
+        },
+        "pass_rate": 0.88,
+        "rule": {
+          "ci95": [
+            0.1275,
+            0.3524
+          ],
+          "count": 11,
+          "rate": 0.22,
+          "runs": 50
+        },
+        "true_drop": 0.04
+      },
+      {
+        "bonferroni": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "pass_rate": 0.86,
+        "rule": {
+          "ci95": [
+            0.6045,
+            0.8413
+          ],
+          "count": 37,
+          "rate": 0.74,
+          "runs": 50
+        },
+        "true_drop": 0.06
+      },
+      {
+        "bonferroni": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "pass_rate": 0.84,
+        "rule": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "true_drop": 0.08
+      },
+      {
+        "bonferroni": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "pass_rate": 0.82,
+        "rule": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "true_drop": 0.1
+      },
+      {
+        "bonferroni": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "pass_rate": 0.8,
+        "rule": {
+          "ci95": [
+            0.9287,
+            1.0
+          ],
+          "count": 50,
+          "rate": 1.0,
+          "runs": 50
+        },
+        "true_drop": 0.12
+      }
+    ]
+  },
+  "reps": 50,
+  "seed_rule": "repetition r uses baseline seed 10000 + 2r and current seed 10000 + 2r + 1"
+}

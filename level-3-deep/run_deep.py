@@ -42,10 +42,10 @@ def _record(rng, latency_mean, latency_sd, tokens_mean, tokens_sd, cost_per_toke
 
 
 def generate_window(seed, latency_mean, tokens_mean, cost_per_token, pass_rate,
-                    latency_sd=80.0, tokens_sd=300.0):
+                    latency_sd=80.0, tokens_sd=300.0, n=N):
     rng = random.Random(seed)
     return [_record(rng, latency_mean, latency_sd, tokens_mean, tokens_sd, cost_per_token, pass_rate)
-            for _ in range(N)]
+            for _ in range(n)]
 
 
 def build_experiment():
