@@ -2,6 +2,8 @@
 
 LLM operations: request logging, tracing, a version registry, drift detection and alerts.
 
+**Live dashboard:** [jesunahmadushno.github.io/llm-observability](https://jesunahmadushno.github.io/llm-observability/), with a drift lab and a false-alarm explorer that re-run the Deep detector in your browser, recorded traces, and a cost calculator. Everything is simulated traffic. Source in `site/`; every number is read from the level folders at build time.
+
 Status: Learn DONE, Build DONE, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH, v1.0). Level 1 is built, tested, and measured below: on 10 simulated requests the logger recorded 22,750 total tokens at a total cost of 9.80 USD from the stated teaching price table, mean latency 550.0 ms, 20 trace spans, 21 unit tests passing. No real LLM was called. Build adds a persistent JSONL store, a simulated service with nested spans, registry diff, and a static dashboard over 60 simulated requests (details below). Deep adds quality drift detection and alerts over seeded simulated windows (details below). Quality in Deep is a simulated logged field, never real model quality.
 Project: P12. Fleet node: BlackBoxV2. Wave: Wave 5. All levels were run on the Muse VM (CPU), not BlackBoxV2; see the level READMEs for the named deduction.
 
