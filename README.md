@@ -18,7 +18,7 @@ LLM operations (MLOps and platform engineering).
 
 **Verdict.** Functional, not pre-registered. Tests pass in CI on
 Python 3.11 and 3.12, the results are regenerated from the seeded
-generators by one command per component and checked byte for byte in
+generators by one command (scripts/reproduce.sh) and checked byte for byte in
 CI, and the logger, service and detector have run end to end on
 simulated traffic. No plan was locked before results, and the
 reliability profile (targets, a timed drill on a real service, a
@@ -32,18 +32,17 @@ from the result files at build time).
 ## Reproduce
 
 ```text
-python3 -m unittest discover -s tests -v
-python3 level-1-learn/run_learn.py
-python3 level-2-build/run_build.py
-python3 level-3-deep/run_deep.py
-python3 level-3-deep/calibrate.py
-git diff --stat
+sh scripts/reproduce.sh
 ```
 
-Python 3.11 or later, standard library only. Each runner rewrites its
-committed result file; `git diff` shows nothing except the one timing
-field `benchmark_reload_aggregate_ms` in results_build.json. The
-calibration study takes about 4 seconds on a CPU.
+Python 3.11 or later, standard library only. The script runs the
+tests, the four runners (level-1-learn/run_learn.py,
+level-2-build/run_build.py, level-3-deep/run_deep.py,
+level-3-deep/calibrate.py), then fails if any committed result file
+changed, except the one timing field `benchmark_reload_aggregate_ms`
+in results_build.json, which is re-measured on whatever machine runs
+it. CI runs the same script. The calibration study takes about 4
+seconds on a CPU.
 
 ## Lifecycle
 
@@ -65,6 +64,7 @@ calibration study takes about 4 seconds on a CPU.
 | level-1-learn/ | Code: request logger, tracer, version registry (observability.py), runner, the 10-request labelled dataset, results_learn.json |
 | level-2-build/ | Code: JSONL store and service (service.py), dashboard generator, runner; evidence: store_build.jsonl, dashboard.html, results_build.json |
 | level-3-deep/ | Code: drift detector (drift.py), seeded experiment (run_deep.py), calibration study (calibrate.py); results_deep.json, results_calibration.json |
+| scripts/ | reproduce.sh: the one-command reproduce |
 | tests/ | Unit tests for every component and the layout check (tests/test_smoke.py) |
 | docs/decisions/ | Records of hard-to-reverse choices |
 | site/ | The live dashboard, built from the files above |
