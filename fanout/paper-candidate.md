@@ -73,14 +73,14 @@ real traffic.
 7. Window-size record: the experiment first ran at 200 records per
    window, where PSI noise fired medium alerts on the control. The
    shipped run uses 1,000 records, and the change and its reason
-   are recorded in the Deep README.
+   are recorded in REPORT.md.
 8. Scoring: per-metric severity, overall window severity, and alert
    counts against pre-stated success criteria (control no alert,
    both drift windows alert). All criteria passed at v1.0.
 
 ## Results table
 
-Measured 2026-11-05, simulated data only, from the level READMEs
+Measured 2026-11-05, simulated data only, from REPORT.md
 in the repo.
 
 | Level | Set | Headline result | Steps and cost | Tests |
@@ -93,7 +93,7 @@ in the repo.
 
 ## Venue class note
 
-Per SPEC.md, the paper angle for P12 is a drift detection note
+Per PROPOSAL.md, the paper angle for P12 is a drift detection note
 (one real drift caught, or the method with a seeded drift). This
 brief is the seeded-drift form, stated as such. Venue class is a
 workshop or conference in ML systems or LLM operations, or a
@@ -119,7 +119,7 @@ after acceptance and remain Jesun's call under the free-only rule.
 - Compressed Deep only. The v1.1 backlog (real integration, real
   tokenizer, learned thresholds, embedding drift, alert delivery,
   graded quality, seasonality handling) is future work, named in
-  ROADMAP.md in the repo.
+  PROPOSAL.md in the repo.
 
 ## Submission gate
 

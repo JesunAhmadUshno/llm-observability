@@ -22,13 +22,12 @@ is simulated. No real LLM was called, and quality in Deep is a
 simulated logged field, never real model quality.
 
 Status: v1.0, 2026-11-05. Learn, Build, and compressed Deep are
-done. Total tests: 47, all passing at v1.0. Level grades: Learn
-8,700 of 10,000, Build 8,700 of 10,000, Deep 8,500 of 10,000.
+done. Total tests: 47, all passing at v1.0.
 
 ## Results
 
 All results below are measured runs on simulated data, recorded in
-the level READMEs in the GitHub repo. They prove the logging,
+REPORT.md in the GitHub repo. They prove the logging,
 tracing, registry, persistence, and drift machinery, not
 production quality.
 
@@ -48,7 +47,7 @@ production quality.
 - Deep quality is a simulated boolean field. Drift thresholds are
   documented constants, not learned or calibrated values.
 - Compressed Deep is not the full v2 Deep scope. The remainder is
-  the v1.1 backlog in the repo ROADMAP.md.
+  the next cycle in the repo PROPOSAL.md.
 
 ## Links
 

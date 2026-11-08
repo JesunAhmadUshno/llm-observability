@@ -9,11 +9,8 @@ import calSrc from '../../level-3-deep/calibrate.py?raw';
 import obsSrc from '../../level-1-learn/observability.py?raw';
 import runBuildSrc from '../../level-2-build/run_build.py?raw';
 import storeText from '../../level-2-build/store_build.jsonl?raw';
-import learnMd from '../../level-1-learn/README.md?raw';
-import buildMd from '../../level-2-build/README.md?raw';
-import deepMd from '../../level-3-deep/README.md?raw';
 import { parseThresholds, parseWindows, generateWindow, detectDrift, calibrate, wilson, METRICS } from './drift.js';
-import { parsePriceTable, computeCost, percentile, summarize, parseStore, parsePrompts, diffLines, parseGrade, countTests } from './obs.js';
+import { parsePriceTable, computeCost, percentile, summarize, parseStore, parsePrompts, diffLines, countTests } from './obs.js';
 
 const REPO = 'https://github.com/JesunAhmadUshno/llm-observability';
 const blob = (p) => `${REPO}/blob/main/${p}`;
@@ -30,7 +27,6 @@ const SEED_BASE = +calSrc.match(/^SEED_BASE = (\d+)/m)[1];
 const PRICES = parsePriceTable(obsSrc);
 const STORE = parseStore(storeText);
 const PROMPTS = parsePrompts(runBuildSrc);
-const GRADES = [['Learn', 'level-1-learn', learnMd], ['Build', 'level-2-build', buildMd], ['Deep', 'level-3-deep', deepMd]].map(([name, dir, md]) => ({ name, dir, ...parseGrade(md) }));
 const TEST_COUNT = countTests(Object.values(import.meta.glob('../../tests/*.py', { query: '?raw', import: 'default', eager: true })));
 const PRESETS = [['control_no_drift', 'control', 'No drift (control)'], ['latency_cost_drift', 'latency_cost', 'Latency + cost drift'], ['quality_drift', 'quality', 'Quality drift']];
 const METRIC_LABEL = { latency_ms: 'Latency (ms)', total_tokens: 'Total tokens', cost_usd: 'Cost (USD)', quality_pass_rate_simulated: 'Pass rate (simulated)' };
@@ -66,10 +62,8 @@ function MenuBar() {
     <div className="menubar" role="banner">
       <span className="apple" aria-hidden="true">◆</span>
       <a className="app" href="#top">LLM Observability</a>
-      <a className="m" href={blob('level-1-learn/README.md')}>Learn</a>
-      <a className="m" href={blob('level-2-build/README.md')}>Build</a>
-      <a className="m" href={blob('level-3-deep/README.md')}>Deep</a>
-      <a className="m" href={blob('docs/research-review.md')}>Review</a>
+      <a className="m" href={blob('PROPOSAL.md')}>Proposal</a>
+      <a className="m" href={blob('REPORT.md')}>Report</a>
       <span className="spacer" />
       <span className="status"><i /> Simulated traffic only</span>
       <button className="theme" onClick={toggle} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>{dark ? '☀' : '☾'}</button>
@@ -142,7 +136,7 @@ function Hero() {
   return (
     <header className="card hero window" id="top" data-title="drift.py — llm-observability">
       <div className="head">
-        <p className="eyebrow">Learn · Build · Deep, all on simulated traffic</p>
+        <p className="eyebrow">Verdict: Functional, not pre-registered · simulated traffic only</p>
         <span className={`pill ${deep.success_criteria.all_passed ? 'good' : 'bad'}`}>● Success criteria {deep.success_criteria.all_passed ? 'all passed' : 'failed'}</span>
       </div>
       <h1>On {fmt(deep.n_per_window)}-record seeded windows, the detector <em>caught both injected drifts</em> and stayed quiet on the control.</h1>
@@ -625,10 +619,10 @@ function Method() {
     'Quality is one simulated boolean. Real quality is graded, delayed and often human-judged; there is no output-text or embedding drift.',
     'Cost is derived from tokens, so alerts on both can double-count one change.',
     `Window-vs-window only. The CUSUM study shows a sequential detector catches a step in ${cal.cusum_latency.delay_records_median} records (median) but false-alarmed in ${cal.cusum_latency.false_alarm_before_change.count}/${cal.cusum_latency.runs} clean pre-change streams at h ${cal.cusum_latency.h_sd} SD.`,
-    'Prices are teaching constants and Build tokens use the ceil(len/4) proxy. Runs were on a CPU VM, not the fleet node named in SPEC.md.',
+    'Prices are teaching constants and Build tokens use the ceil(len/4) proxy. Runs were on a CPU VM, not the fleet node named in PROPOSAL.md.',
   ];
   return (
-    <section id="method" className="card window reveal" data-title="README.md — method and limits">
+    <section id="method" className="card window reveal" data-title="REPORT.md — method and limits">
       <p className="eyebrow">Method and limits</p>
       <h2>What the statistics are, and <em>what they cannot</em> tell you.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -636,17 +630,8 @@ function Method() {
       </div>
       <h3 style={{ marginTop: 24 }}>Threats to validity</h3>
       <ul className="limits">{limits.map((x) => <li key={x}>{x}</li>)}</ul>
-      <h3 style={{ marginTop: 24 }}>Grades on record, with named deductions</h3>
       <div className="docs" style={{ marginTop: 12 }}>
-        {GRADES.map((g) => (
-          <a key={g.name} href={blob(`${g.dir}/README.md`)}>
-            <b>{g.name}: {fmt(g.grade)} of {fmt(g.of)}</b>
-            {g.deductions.map((d) => <small key={d.reason}>−{d.points} {d.reason}</small>)}
-          </a>
-        ))}
-      </div>
-      <div className="docs" style={{ marginTop: 12 }}>
-        {[['docs/research-review.md', 'Research review', 'Graded against a research rubric'], ['level-3-deep/calibrate.py', 'Calibration study', 'False alarms, power, CUSUM'], [`${REPO}/releases`, 'Releases', 'Tagged versions on GitHub']].map(([p, t, dsc]) => (
+        {[['REPORT.md', 'Report', 'Results, misses, threats and the review'], ['PROPOSAL.md', 'Proposal', 'Question, prior work, next cycle'], ['level-3-deep/calibrate.py', 'Calibration study', 'False alarms, power, CUSUM'], [`${REPO}/releases`, 'Releases', 'Tagged versions on GitHub']].map(([p, t, dsc]) => (
           <a key={p} href={p.startsWith('http') ? p : blob(p)}><b>{t}</b><small>{dsc}</small></a>
         ))}
       </div>

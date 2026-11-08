@@ -30,7 +30,7 @@ cd llm-observability
 
 ## Step 1: Level 1, Learn, logging, tracing, registry
 
-Read level-1-learn/README.md first. It explains cost from the
+Read REPORT.md, section Logging and tracing, first. It explains cost from the
 stated teaching price table, the structured request record, nested
 trace spans from an injected clock, the version registry, and
 aggregation with nearest-rank percentiles.
@@ -64,7 +64,7 @@ Read your results:
 
 ## Step 2: Level 2, Build, persistent service and dashboard
 
-Read level-2-build/README.md. The service persists records and
+Read REPORT.md, section Persistent service. The service persists records and
 spans to a JSONL store, runs each simulated request through three
 nested spans, counts tokens with the proxy ceil(len(text) / 4)
 (not a real tokenizer), diffs registry versions, and generates a
@@ -98,7 +98,7 @@ Read your results:
 
 ## Step 3: Level 3, Deep, drift detection and alerts
 
-Read level-3-deep/README.md. The detector compares a baseline
+Read REPORT.md, section Drift detection. The detector compares a baseline
 window with a current window using PSI and mean shift for latency,
 tokens, and cost, and a two-proportion z check for the simulated
 quality pass rate. Quality is a simulated logged field.

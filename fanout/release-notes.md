@@ -22,7 +22,6 @@ URL: https://github.com/JesunAhmadUshno/llm-observability/releases/tag/v0.1
   matched 10 of 10.
 - Tests: 21 unit tests in tests/test_learn_observability.py, plus
   the scaffold smoke test.
-- Grade: 8,700 of 10,000, per the batch ledger.
 - Limits carried in the release: simulated only, small fixed set,
   in-memory only, teaching price constants, no drift detection.
 
@@ -42,7 +41,6 @@ URL: https://github.com/JesunAhmadUshno/llm-observability/releases/tag/v0.5
   315 ms, p95 561 ms, corrupt lines 0. Registry diff prompt v1 to
   v2: added Cite the source line., removed none, unchanged 2 lines.
 - Tests: 18 Build unit tests, 39 in total with Learn.
-- Grade: 8,700 of 10,000, per the batch ledger.
 - Limits carried in the release: simulated only, token proxy,
   static dashboard only, single-file store with no locking, no
   drift detection in this level.
@@ -69,7 +67,5 @@ URL: https://github.com/JesunAhmadUshno/llm-observability/releases/tag/v1.0
   (simulated pass rate 0.909 to 0.628, drop 0.281, z -14.896831).
   All success criteria passed.
 - Tests: 8 Deep unit tests, 47 in total with Learn and Build.
-- Grade: 8,500 of 10,000, deductions itemized in the Deep README
-  (total deductions 1,500).
-- The rest of the v2 Deep scope is the v1.1 backlog in ROADMAP.md.
+- The rest of the v2 Deep scope is the next cycle in PROPOSAL.md.
   It is not part of v1.0 and is not claimed by these notes.

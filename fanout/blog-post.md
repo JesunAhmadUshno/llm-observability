@@ -28,22 +28,21 @@ Repository: https://github.com/JesunAhmadUshno/llm-observability
 
 Past: general observability stacks in the Langfuse class already
 exist. The prior art and the problem history are recorded in
-DOSSIER.md and NOVELTY.md in the repo. The novelty claim there
+PROPOSAL.md in the repo. The novelty claim there
 stays marked PROPOSED. This post makes no novelty claim beyond the
 measured work below.
 
 Present: v1.0 closes three levels on 2026-11-05. Learn built
 request logging, tracing spans, and a prompt and model version
-registry on 10 simulated requests (grade 8,700 of 10,000). Build
+registry on 10 simulated requests. Build
 added a persistent JSONL store, a simulated service with nested
 spans, a registry diff, and a static dashboard over 60 simulated
-requests (grade 8,700 of 10,000). Compressed Deep added drift
+requests. Compressed Deep added drift
 detection (PSI, mean shift, and a two-proportion z check) and
-alerts over seeded windows of 1,000 records each (grade 8,500 of
-10,000).
+alerts over seeded windows of 1,000 records each.
 
-Future: the rest of the v2 Deep scope is named in ROADMAP.md in
-the repo as the v1.1 backlog. It includes real LLM integration,
+Future: the rest of the v2 Deep scope is named in PROPOSAL.md in
+the repo (next cycle). It includes real LLM integration,
 a real tokenizer, learned thresholds, embedding drift, alert
 delivery channels, graded quality signals, seasonality handling,
 and persistence for drift reports. None of that is done, and none
@@ -53,8 +52,8 @@ of it is claimed here.
 
 At v1.0, on simulated data only with no real LLM called: Learn passed 21 tests on 10 simulated requests, recording 22,750 total tokens (15,500 prompt plus 7,250 completion) at a total cost of 9.80 USD from the stated teaching price table, with mean latency 550.0 ms, p50 500 ms, p95 1000 ms, 20 trace spans, and cost labels matched on 10 of 10 requests; Build passed 18 tests (39 tests in total) on 60 simulated requests persisted and reloaded with 180 trace spans, totalling 2,208 proxy tokens (876 prompt plus 1,332 completion, proxy ceil(len/4), not a real tokenizer) at a total cost of 1.062 USD, with mean latency 333.167 ms, p50 315 ms, p95 561 ms, and a registry diff for prompt v1 to v2 that added "Cite the source line." with no lines removed and 2 lines unchanged; compressed Deep passed 8 tests (47 tests in total) with a drift detector (PSI, mean shift in pooled SD units, and a two-proportion z check on a simulated quality field) over windows of 1,000 records each, where the control window raised 0 alerts at severity none with latency PSI 0.025905, the latency and cost drift window raised 3 alerts at severity high with latency PSI 8.045714, latency mean shift 4.480065, and latency mean 498.367 to 853.770 ms, and the quality drift window raised 1 alert at severity high with the simulated pass rate falling from 0.909 to 0.628, a drop of 0.281.
 
-Every number in that claim comes from a run recorded in the level
-READMEs and results files in the repo, on simulated data. Read the
+Every number in that claim comes from a run recorded in
+REPORT.md and results files in the repo, on simulated data. Read the
 limits section below before quoting any of it.
 
 ## Results by level
@@ -85,8 +84,6 @@ and keeps a changelog.
 | Tests | 21 |
 | Determinism | results_learn.json identical across two runs (hash verified) |
 
-Grade: 8,700 of 10,000, deductions itemized in the Learn README.
-
 ### Level 2, Build (release v0.5)
 
 Build persists records and spans to one JSONL store, serves 60
@@ -110,8 +107,6 @@ not a real tokenizer.
 | Tests | 18 Build, 39 in total |
 | Determinism | results_build.json identical across two runs except benchmark_reload_aggregate_ms, the named timing field |
 
-Grade: 8,700 of 10,000, deductions itemized in the Build README.
-
 ### Level 3, Deep, compressed (release v1.0)
 
 Deep compares a baseline window against a current window on
@@ -122,7 +117,7 @@ z check: an alert requires a drop of at least 0.10 and absolute z
 at least 1.96. Each window holds 1,000 records. Window size was
 raised from 200 to 1,000 after the first run showed PSI sampling
 noise firing medium alerts on the control at 200; that change and
-its reason are recorded in the Deep README, not hidden.
+its reason are recorded in REPORT.md, not hidden.
 
 | Window | Overall severity | Alerts | Headline numbers |
 | --- | --- | --- | --- |
@@ -133,14 +128,6 @@ its reason are recorded in the Deep README, not hidden.
 Tests: 8 Deep tests, 47 in total with Learn and Build.
 Determinism: results_deep.json identical across two runs, with no
 timing field.
-
-Grade: 8,500 of 10,000. Deductions are itemized in the Deep README:
-minus 500 for simulated only with no real LLM or live service,
-minus 300 because the quality field is simulated, minus 200 for
-running on the Muse VM instead of BlackBoxV2, minus 300 because
-thresholds are documented constants and not learned, and minus 200
-for no alert delivery channels and no output-text or embedding
-drift. Total deductions 1,500, and 10,000 minus 1,500 is 8,500.
 
 ## Honest limits
 
@@ -168,9 +155,9 @@ drift. Total deductions 1,500, and 10,000 minus 1,500 is 8,500.
 - Alerts in Deep are data in JSON and return values only. No
   email, webhook, or paging channel exists in v1.0.
 - Compressed Deep is not the full v2 Deep scope. The remainder is
-  the named v1.1 backlog in ROADMAP.md.
+  the next cycle named in PROPOSAL.md.
 - The runs executed on the Muse VM, not the assigned BlackBoxV2
-  node. That deduction is named in each level grade.
+  node, as REPORT.md states.
 
 ## Where to go next
 
@@ -178,6 +165,6 @@ drift. Total deductions 1,500, and 10,000 minus 1,500 is 8,500.
   that runs all three levels and the full test suite.
 - Releases: v0.1 (Learn), v0.5 (Build), v1.0 (Learn, Build,
   compressed Deep) on the GitHub repo linked above.
-- Book chapter: "Watching The Machine Think" per SPEC.md, held as
+- Book chapter: "Watching The Machine Think" per PROPOSAL.md, held as
   a draft angle in this fan-out set.
 - License: code Apache-2.0, tutorials CC BY 4.0.
