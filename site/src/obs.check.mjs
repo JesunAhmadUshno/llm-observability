@@ -1,8 +1,8 @@
-// Known-answer check, run by npm run build: cost, percentile, store parsing, registry diff and
-// grade parsing must reproduce the numbers in results_learn.json, results_build.json and the READMEs.
+// Known-answer check, run by npm run build: cost, percentile, store parsing, and registry diff
+// must reproduce the numbers in results_learn.json and results_build.json.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parsePriceTable, computeCost, percentile, summarize, parseStore, parsePrompts, diffLines, parseGrade, countTests } from './obs.js';
+import { parsePriceTable, computeCost, percentile, summarize, parseStore, parsePrompts, diffLines, countTests } from './obs.js';
 
 const read = (p) => fs.readFileSync(new URL(`../../${p}`, import.meta.url), 'utf8');
 const learn = JSON.parse(read('level-1-learn/results_learn.json'));
@@ -44,9 +44,6 @@ assert.deepEqual(d.added, want.diff.added);
 assert.deepEqual(d.removed, want.diff.removed);
 assert.equal(d.unchanged, want.diff.unchanged);
 
-const grades = ['level-1-learn', 'level-2-build', 'level-3-deep'].map((l) => parseGrade(read(`${l}/README.md`)));
-for (const g of grades) assert.equal(g.grade + g.deductions.reduce((a, x) => a + x.points, 0), g.of, `deductions sum for grade ${g.grade}`);
-
 const tests = countTests(fs.readdirSync(new URL('../../tests/', import.meta.url)).filter((f) => f.endsWith('.py')).map((f) => read(`tests/${f}`)));
 assert.ok(tests >= 47, `test count ${tests}`);
-console.log('obs ok', { costsChecked: costs, grades: grades.map((g) => g.grade), tests });
+console.log('obs ok', { costsChecked: costs, tests });

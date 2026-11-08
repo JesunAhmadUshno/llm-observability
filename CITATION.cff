@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "llm-observability: request logging, tracing and a calibrated drift rule on simulated LLM traffic"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/llm-observability"
+url: "https://jesunahmadushno.github.io/llm-observability/"
+license: Apache-2.0
+date-released: 2026-11-05

@@ -68,22 +68,4 @@ export function diffLines(oldLines, newLines) {
   };
 }
 
-// "Grade: 8,700 of 10,000." and its "- reason: minus N." list from a level README.
-export function parseGrade(md) {
-  const g = md.match(/Grade: ([\d,]+) of ([\d,]+)\./);
-  if (!g) throw new Error('grade line not found');
-  const after = md.slice(g.index).split('\n');
-  const items = [];
-  let cur = null;
-  for (const line of after.slice(1)) {
-    if (line.startsWith('- ')) { cur && items.push(cur); cur = line.slice(2); }
-    else if (cur !== null && /^\s+\S/.test(line)) cur += ' ' + line.trim();
-    else if (cur !== null) { items.push(cur); cur = null; if (!line.trim() || items.length) break; }
-  }
-  if (cur) items.push(cur);
-  const deductions = items.map((t) => t.match(/^(.*): minus ([\d,]+)\.$/)).filter(Boolean)
-    .map((m) => ({ reason: m[1], points: Number(m[2].replace(/,/g, '')) }));
-  return { grade: Number(g[1].replace(/,/g, '')), of: Number(g[2].replace(/,/g, '')), deductions };
-}
-
 export const countTests = (sources) => sources.reduce((n, s) => n + (s.match(/^\s*def test_/gm) || []).length, 0);
