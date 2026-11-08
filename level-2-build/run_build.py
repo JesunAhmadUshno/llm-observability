@@ -119,7 +119,7 @@ def main():
             {k: v for k, v in r.items() if k != "spans"} for r in records
         ],
         "benchmark_reload_aggregate_ms": elapsed_ms,
-        "benchmark_label": "measured on the Muse VM, reload plus aggregate over persisted records, not part of any determinism claim",  # noqa: E501
+        "benchmark_label": "measured on whichever machine last ran run_build.py (2.341 ms on the Muse VM, 2026-11-05), reload plus aggregate over persisted records, indicative only, not part of any determinism claim",  # noqa: E501
         "dashboard_file": "dashboard.html",
         "store_file": "store_build.jsonl",
     }

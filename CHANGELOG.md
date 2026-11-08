@@ -8,6 +8,13 @@ standard v2 the repo's verdict is Functional, not "v1.0 Released".
 ## [Unreleased]
 
 ### Changed
+- 2026-11-08: Independent review applied. One-command reproduce,
+  scripts/reproduce.sh, documented in the README and run in CI. The
+  results_build.json benchmark_label no longer claims the Muse VM for a
+  timing every machine re-measures. CITATION.cff drops date-released
+  (the old v1.0 tag date) until a release under standard v2. Grades
+  removed from the v0.1, v0.5 and v1.0 GitHub release notes; tags
+  unchanged.
 - 2026-11-08: Restructured to the portfolio standard v2. README is the
   abstract (question, headline with its interval, field, job family,
   verdict: Functional, not pre-registered). PROPOSAL.md gathers SPEC.md,
