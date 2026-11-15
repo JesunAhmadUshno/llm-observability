@@ -122,6 +122,10 @@ export default function App() {
       <footer>
         Code: Apache-2.0. Every number on this page is read at build time from the repo’s <code>level-*/</code> result files, store and source;
         the Drift Lab, calibration and calculators re-run the repo’s own code ported to JavaScript in your browser. All traffic is simulated: no real LLM was called.
+        <p className="support">
+          <a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a>
+          <a href="https://calendly.com/jesunahmadushno/30min">Work with me</a>
+        </p>
       </footer>
     </div>
   );
