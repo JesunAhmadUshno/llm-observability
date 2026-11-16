@@ -11,7 +11,13 @@ the drift rule raised no false alert in 50 no-drift control pairs
 but it is weak on small changes: a 0.25 SD latency shift alerted in
 15/50 runs (0.19 to 0.44) where a KS baseline caught 50/50, and below
 500 records per window it false-alarmed in 38/50 to 50/50 controls.
-No real LLM traffic was observed.
+A real window is now on record too (2026-11-15, level-4-live): 340 real
+requests to a local Qwen2.5-0.5B-Instruct model over 1 h 58 min, 0 errors,
+mean latency 304 ms (p50 287, p95 653, p99 718), 48,456 tokens by the
+server's own usage counts, no drift between the window's halves, and a
+mechanical answer check at 255/340 that proved all-or-nothing per
+question form. Program-driven workload on one personal fleet machine,
+not production traffic.
 
 **Field.** Systems and infrastructure, reliability. **Job family.**
 LLM operations (MLOps and platform engineering).
@@ -20,7 +26,8 @@ LLM operations (MLOps and platform engineering).
 Python 3.11 and 3.12, the results are regenerated from the seeded
 generators by one command (scripts/reproduce.sh) and checked byte for byte in
 CI, and the logger, service and detector have run end to end on
-simulated traffic. No plan was locked before results, and the
+simulated traffic and, since 2026-11-15, on one real local-model
+window (level-4-live). No plan was locked before results, and the
 reliability profile (targets, a timed drill on a real service, a
 runbook) is not met, so the repo stops at Functional.
 
@@ -64,6 +71,7 @@ seconds on a CPU.
 | level-1-learn/ | Code: request logger, tracer, version registry (observability.py), runner, the 10-request labelled dataset, results_learn.json |
 | level-2-build/ | Code: JSONL store and service (service.py), dashboard generator, runner; evidence: store_build.jsonl, dashboard.html, results_build.json |
 | level-3-deep/ | Code: drift detector (drift.py), seeded experiment (run_deep.py), calibration study (calibrate.py); results_deep.json, results_calibration.json |
+| level-4-live/ | Code: model client, instrumented service, workload driver, analyzer (live.py, server.py, client.py, analyze.py) and the document corpus (corpus.json); evidence: store_live.jsonl, results_live.json |
 | scripts/ | reproduce.sh: the one-command reproduce |
 | tests/ | Unit tests for every component and the layout check (tests/test_smoke.py) |
 | docs/decisions/ | Records of hard-to-reverse choices |
