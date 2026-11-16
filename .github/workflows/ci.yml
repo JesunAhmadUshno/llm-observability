@@ -46,3 +46,5 @@ jobs:
           if git diff -U0 -- level-2-build/results_build.json | grep '^[-+] ' | grep -v benchmark_reload_aggregate_ms; then
             echo "results_build.json changed beyond the timing field"; exit 1
           fi
+      - name: one-command reproduce (the README's documented command)
+        run: sh scripts/reproduce.sh

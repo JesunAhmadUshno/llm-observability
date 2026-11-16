@@ -1,6 +1,6 @@
 {
-  "benchmark_label": "measured on the Muse VM, reload plus aggregate over persisted records, not part of any determinism claim",
-  "benchmark_reload_aggregate_ms": 2.341,
+  "benchmark_label": "measured on whichever machine last ran run_build.py (2.341 ms on the Muse VM, 2026-11-05), reload plus aggregate over persisted records, indicative only, not part of any determinism claim",
+  "benchmark_reload_aggregate_ms": 0.89,
   "corrupt_lines": 0,
   "dashboard_file": "dashboard.html",
   "label": "simulated requests only, no real LLM call, token counts are a proxy not a real tokenizer",

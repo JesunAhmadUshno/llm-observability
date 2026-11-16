@@ -1,8 +1,11 @@
 # REPORT: llm-observability (P12)
 
 Field profile: Systems, reliability. Status: not pre-registered (see
-PROPOSAL.md). Every request, token, latency and quality value in this
-report is simulated; no real LLM was called. Runs were on the Muse VM
+PROPOSAL.md). Every request, token, latency and quality value in the
+level 1 to 3 sections of this report is simulated; no real LLM was
+called for them. The Live observation section (2026-11-15) is the one
+exception: it reports a real window, labelled as such, with its own
+host and method. Runs in the level 1 to 3 sections were on the Muse VM
 (CPU, Python 3.12), not the fleet node BlackBoxV2 named in the scaffold
 spec.
 
@@ -399,6 +402,82 @@ What this shows: on this generator the thresholds are too sensitive below about 
 - No alert delivery: alerts are data in JSON and return values only. No email, webhook, or paging channel exists in this level.
 - One-sided quality check: the pass-rate rule alerts only on drops (current below baseline). A rise in pass rate never alerts, by design.
 - Distribution shape: mean shift misses shape changes with the same mean; PSI catches some of those, but neither statistic proves a cause.
+
+## Live observation (2026-11-15, level-4-live)
+
+Status: DONE (2026-11-15). This is the one real-traffic section in
+this report. Everything in it is measured from the window's own store
+(level-4-live/store_live.jsonl, summarized by
+level-4-live/analyze.py into level-4-live/results_live.json).
+
+### Method
+
+A real local model: Qwen2.5-0.5B-Instruct, GGUF Q4_K_M (file SHA-256
+74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db),
+served by llama.cpp b12418 (llama-server) on BlackBoxV3, a personal
+fleet node (Intel i5-8400, 6 cores, CPU only, no GPU). The planned
+host was BlackBoxV2, the node named in the scaffold spec; on
+2026-11-15 it was unreachable (absent from the tailnet device list,
+SSH and HTTP probes unanswered), so the run moved to the fleet's
+other always-on Linux node, and the substitution is recorded here.
+
+The instrumented service is this repo's own code
+(level-4-live/server.py over level-4-live/live.py): each request
+builds a document question from a bundled corpus of this repo's own
+documentation (level-4-live/corpus.json: 12 documents, 24 questions,
+each with the answer string the document contains), calls the model
+server, times the call with a wall clock, and persists the record and
+its trace spans through the Level 2 LogStore. The workload driver
+(level-4-live/client.py) asked the questions in a seeded shuffled
+rotation with jittered gaps of 15 to 27 seconds. Three manual smoke
+calls preceded the window and are not in the store.
+
+Window: 2026-11-15 16:35:41 to 18:33:36 UTC (7,074.7 s, about
+1 h 58 min), 340 records. The client log cross-checks exactly: 340
+attempts, all status ok.
+
+### Measured results
+
+- Errors: 0 of 340 (error rate 0.0).
+- Latency: mean 304 ms, p50 287 ms, p95 653 ms, p99 718 ms, min
+  94 ms, max 772 ms. The five slowest requests were all the same
+  question (q-window-why, over the longest document in the corpus),
+  at 718 to 772 ms.
+- Tokens, from the model server's own usage counts: 44,829 prompt
+  and 3,627 completion, 48,456 total; means of 131.9 prompt and 10.7
+  completion tokens per request. Payloads: prompts mean 437 chars
+  (max 579), completions mean 35.8 chars (max 115).
+- Answer check: 255 of 340 completions contained the document's
+  answer string (0.75). First half 0.747, second half 0.753,
+  two-proportion z 0.125: no movement across the window.
+- Drift between the window's halves, with the Level 3 statistics:
+  latency PSI 0.033, mean shift -0.036 pooled SD, severity none;
+  total tokens PSI 0.001, severity none. No alerts.
+
+### Finding: the check is all-or-nothing per question form
+
+Six of the 24 questions failed the answer check on every attempt
+(0 of 85 combined) while the other 18 passed on every attempt
+(255 of 255). Reading the failing completions shows two causes. Most
+are phrasing misses: the model gave the right fact in words that do
+not contain the document's exact string (a bare "No." against the
+expected "not live vendor prices"; "50" against "50 of 50"; "No, a
+vulnerability should not be reported as a public issue." against
+"Do not open a public issue"), which a substring check cannot
+credit. One is a polarity slip: "Yes, a rise in pass rate never
+triggers an alert." No serving failure occurred in the window. So
+the 0.75 is exact-phrase recall under a substring rule, not a
+semantic accuracy score, and the per-question split is the useful
+signal: question form, not time or load, decided pass and fail.
+
+### Honest scope line
+
+Program-driven workload on one personal fleet machine, one small
+model, one window of about two hours. Not organic user traffic, not
+production traffic, not production scale. Cost is recorded as 0 by
+construction (self-hosted model, zero live price rates). The
+reliability profile gap named in the Summary stands (no targets, no
+timed drill, no runbook), so the verdict stays Functional.
 
 ## Review (2026-11-07, was docs/research-review.md)
 

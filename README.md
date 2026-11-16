@@ -11,16 +11,23 @@ the drift rule raised no false alert in 50 no-drift control pairs
 but it is weak on small changes: a 0.25 SD latency shift alerted in
 15/50 runs (0.19 to 0.44) where a KS baseline caught 50/50, and below
 500 records per window it false-alarmed in 38/50 to 50/50 controls.
-No real LLM traffic was observed.
+A real window is now on record too (2026-11-15, level-4-live): 340 real
+requests to a local Qwen2.5-0.5B-Instruct model over 1 h 58 min, 0 errors,
+mean latency 304 ms (p50 287, p95 653, p99 718), 48,456 tokens by the
+server's own usage counts, no drift between the window's halves, and a
+mechanical answer check at 255/340 that proved all-or-nothing per
+question form. Program-driven workload on one personal fleet machine,
+not production traffic.
 
 **Field.** Systems and infrastructure, reliability. **Job family.**
 LLM operations (MLOps and platform engineering).
 
 **Verdict.** Functional, not pre-registered. Tests pass in CI on
 Python 3.11 and 3.12, the results are regenerated from the seeded
-generators by one command per component and checked byte for byte in
+generators by one command (scripts/reproduce.sh) and checked byte for byte in
 CI, and the logger, service and detector have run end to end on
-simulated traffic. No plan was locked before results, and the
+simulated traffic and, since 2026-11-15, on one real local-model
+window (level-4-live). No plan was locked before results, and the
 reliability profile (targets, a timed drill on a real service, a
 runbook) is not met, so the repo stops at Functional.
 
@@ -32,18 +39,17 @@ from the result files at build time).
 ## Reproduce
 
 ```text
-python3 -m unittest discover -s tests -v
-python3 level-1-learn/run_learn.py
-python3 level-2-build/run_build.py
-python3 level-3-deep/run_deep.py
-python3 level-3-deep/calibrate.py
-git diff --stat
+sh scripts/reproduce.sh
 ```
 
-Python 3.11 or later, standard library only. Each runner rewrites its
-committed result file; `git diff` shows nothing except the one timing
-field `benchmark_reload_aggregate_ms` in results_build.json. The
-calibration study takes about 4 seconds on a CPU.
+Python 3.11 or later, standard library only. The script runs the
+tests, the four runners (level-1-learn/run_learn.py,
+level-2-build/run_build.py, level-3-deep/run_deep.py,
+level-3-deep/calibrate.py), then fails if any committed result file
+changed, except the one timing field `benchmark_reload_aggregate_ms`
+in results_build.json, which is re-measured on whatever machine runs
+it. CI runs the same script. The calibration study takes about 4
+seconds on a CPU.
 
 ## Lifecycle
 
@@ -65,6 +71,8 @@ calibration study takes about 4 seconds on a CPU.
 | level-1-learn/ | Code: request logger, tracer, version registry (observability.py), runner, the 10-request labelled dataset, results_learn.json |
 | level-2-build/ | Code: JSONL store and service (service.py), dashboard generator, runner; evidence: store_build.jsonl, dashboard.html, results_build.json |
 | level-3-deep/ | Code: drift detector (drift.py), seeded experiment (run_deep.py), calibration study (calibrate.py); results_deep.json, results_calibration.json |
+| level-4-live/ | Code: model client, instrumented service, workload driver, analyzer (live.py, server.py, client.py, analyze.py) and the document corpus (corpus.json); evidence: store_live.jsonl, results_live.json |
+| scripts/ | reproduce.sh: the one-command reproduce |
 | tests/ | Unit tests for every component and the layout check (tests/test_smoke.py) |
 | docs/decisions/ | Records of hard-to-reverse choices |
 | site/ | The live dashboard, built from the files above |

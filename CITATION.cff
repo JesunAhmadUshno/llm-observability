@@ -7,4 +7,8 @@ authors:
 repository-code: "https://github.com/JesunAhmadUshno/llm-observability"
 url: "https://jesunahmadushno.github.io/llm-observability/"
 license: Apache-2.0
-date-released: 2026-11-05
+# No version or date-released yet: the repo's verdict under the
+# portfolio standard v2 is Functional, not "v1.0 Released". The old
+# tag v1.0 (2026-11-05) was cut under the earlier Learn / Build / Deep
+# ladder; version and date-released return with the first release
+# under standard v2.

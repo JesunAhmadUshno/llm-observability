@@ -5,10 +5,11 @@
 # "# noqa: E402" markers, which are live under this selection.
 # Line length is 120. Import blocks were reorganised per ruff fix
 # output with no change to any imported name or string value.
-# One pre-existing benchmark_label string line in
-# level-2-build/run_build.py is 134 characters and passes under its
-# "# noqa: E501" marker; the string itself is unchanged so the
-# generated results files stay identical, recorded here not hidden.
+# The benchmark_label string line in level-2-build/run_build.py is
+# longer than 120 characters and passes under its "# noqa: E501"
+# marker. Its text was reworded on 2026-11-08 (it no longer claims the
+# Muse VM for a timing that any machine re-measures) and
+# results_build.json was regenerated to match; recorded here not hidden.
 line-length = 120
 [lint]
 select = ["E", "F", "I"]

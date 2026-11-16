@@ -1,0 +1,309 @@
+{
+  "anomaly": {
+    "found": true,
+    "note": "One systematic pattern, in the answer check rather than the serving path. Six of the 24 questions (q-cal-40ms, q-headline-ks, q-layout-where, q-pass-rise, q-price-live, q-sec-public) failed the mechanical check on every attempt, 0 of 85 combined, while the other 18 passed on every attempt, 255 of 255. Reading the failing completions shows two causes. Most are phrasing misses: the model gave the right fact in different words than the document's exact string (a bare 'No.' against the expected 'not live vendor prices'; '50' against '50 of 50'; 'No, a vulnerability should not be reported as a public issue.' against 'Do not open a public issue'), which a substring check cannot credit. One is a polarity slip: q-pass-rise was answered 'Yes, a rise in pass rate never triggers an alert.', the wrong yes/no prefix on a correct clause. No serving anomaly occurred in the window: 0 errors in 340 requests, no drift alert between halves, and the slowest request (772 ms) sat far below the 3 x p95 outlier line (1,959 ms). The lesson is about the instrument: a substring answer check on a small model is all-or-nothing per question form, so the 0.75 pass rate reads as exact-phrase recall, not semantic accuracy."
+  },
+  "anomaly_candidates": [
+    {
+      "attempts": 14,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-cal-40ms"
+    },
+    {
+      "attempts": 14,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-headline-ks"
+    },
+    {
+      "attempts": 15,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-layout-where"
+    },
+    {
+      "attempts": 14,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-pass-rise"
+    },
+    {
+      "attempts": 14,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-price-live"
+    },
+    {
+      "attempts": 14,
+      "kind": "answer_check_all_fail",
+      "passes": 0,
+      "question_id": "q-sec-public"
+    }
+  ],
+  "answer_check": {
+    "by_question": {
+      "q-cal-40ms": {
+        "n": 14,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-cusum-delay": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-headline-false": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-headline-ks": {
+        "n": 14,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-layout-ci": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-layout-where": {
+        "n": 15,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-pass-rise": {
+        "n": 14,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-pass-warning": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-price-large-out": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-price-live": {
+        "n": 14,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-proposal-cap": {
+        "n": 15,
+        "pass_rate": 1.0,
+        "passes": 15
+      },
+      "q-proposal-when": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-proxy-rate": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-proxy-real": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-psi-alert": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-psi-origin": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-sec-days": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-sec-public": {
+        "n": 14,
+        "pass_rate": 0.0,
+        "passes": 0
+      },
+      "q-shift-alert": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-shift-cohen": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-store-corrupt": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      },
+      "q-store-percentiles": {
+        "n": 15,
+        "pass_rate": 1.0,
+        "passes": 15
+      },
+      "q-window-size": {
+        "n": 15,
+        "pass_rate": 1.0,
+        "passes": 15
+      },
+      "q-window-why": {
+        "n": 14,
+        "pass_rate": 1.0,
+        "passes": 14
+      }
+    },
+    "first_half": {
+      "n": 170,
+      "pass_rate": 0.747059,
+      "passes": 127
+    },
+    "method": "The completion contains the expected answer string from the document (case-insensitive substring). A mechanical check on a real completion, not a human quality judgement.",
+    "overall": {
+      "n": 340,
+      "pass_rate": 0.75,
+      "passes": 255
+    },
+    "second_half": {
+      "n": 170,
+      "pass_rate": 0.752941,
+      "passes": 128
+    },
+    "two_proportion_z": {
+      "first_half_pass_rate": 0.747059,
+      "note": "two-proportion z on the mechanical answer check",
+      "second_half_pass_rate": 0.752941,
+      "z": 0.125245
+    }
+  },
+  "claims_ceiling": "Real-traffic observation of one small local model on one personal fleet machine, at the scale recorded in the window above. Nothing here is evidence about production LLM traffic.",
+  "deployment": {
+    "host": "BlackBoxV3 (personal fleet node, Intel i5-8400, 6 cores, no GPU)",
+    "model_file_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+    "runtime": "llama.cpp b12418 llama-server, CPU only, 6 threads, context 4096",
+    "service": "level-4-live/server.py on 127.0.0.1, model server on 127.0.0.1, both on the same host"
+  },
+  "drift_first_vs_second_half": {
+    "latency_ms": {
+      "alert": false,
+      "baseline_mean": 307.552941,
+      "current_mean": 301.376471,
+      "ks_critical_bonferroni": 0.167815,
+      "ks_reject": false,
+      "ks_statistic": 0.047059,
+      "mean_shift_alert_threshold": 1.0,
+      "mean_shift_pooled_sd": -0.035651,
+      "mean_shift_warning_threshold": 0.5,
+      "metric": "latency_ms",
+      "psi": 0.032833,
+      "psi_alert_threshold": 0.25,
+      "psi_warning_threshold": 0.1,
+      "severity": "none"
+    },
+    "total_tokens": {
+      "alert": false,
+      "baseline_mean": 142.441176,
+      "current_mean": 142.594118,
+      "ks_critical_bonferroni": 0.167815,
+      "ks_reject": false,
+      "ks_statistic": 0.005882,
+      "mean_shift_alert_threshold": 1.0,
+      "mean_shift_pooled_sd": 0.004976,
+      "mean_shift_warning_threshold": 0.5,
+      "metric": "total_tokens",
+      "psi": 0.001095,
+      "psi_alert_threshold": 0.25,
+      "psi_warning_threshold": 0.1,
+      "severity": "none"
+    }
+  },
+  "errors": [],
+  "generated_by": "level-4-live/analyze.py",
+  "kind": "live-observation",
+  "latency_ms": {
+    "count": 340,
+    "max_ms": 772,
+    "mean_ms": 304.465,
+    "min_ms": 94,
+    "p50_ms": 287,
+    "p95_ms": 653,
+    "p99_ms": 718
+  },
+  "model": {
+    "name": "qwen2.5-0.5b-instruct-q4_k_m",
+    "version": "llama.cpp-b12418-local"
+  },
+  "payload_chars": {
+    "completion_max": 115,
+    "completion_mean": 35.832,
+    "prompt_max": 579,
+    "prompt_mean": 437.132
+  },
+  "requests": {
+    "error_rate": 0.0,
+    "errors": 0,
+    "ok": 340,
+    "total": 340
+  },
+  "slowest_requests": [
+    {
+      "latency_ms": 772,
+      "question_id": "q-window-why",
+      "request_id": "live-0055"
+    },
+    {
+      "latency_ms": 727,
+      "question_id": "q-window-why",
+      "request_id": "live-0103"
+    },
+    {
+      "latency_ms": 718,
+      "question_id": "q-window-why",
+      "request_id": "live-0007"
+    },
+    {
+      "latency_ms": 718,
+      "question_id": "q-window-why",
+      "request_id": "live-0079"
+    },
+    {
+      "latency_ms": 718,
+      "question_id": "q-window-why",
+      "request_id": "live-0127"
+    }
+  ],
+  "store_file": "level-4-live/store_live.jsonl",
+  "tokens": {
+    "completion_mean": 10.668,
+    "completion_total": 3627,
+    "prompt_mean": 131.85,
+    "prompt_total": 44829,
+    "source": "model server usage field (token_source per record)",
+    "token_sources": [
+      "usage"
+    ],
+    "total": 48456
+  },
+  "traffic": {
+    "generator": "level-4-live/client.py, seeded rotation, jittered gaps",
+    "honest_label": "Program-driven workload on a personal fleet machine. Not organic user traffic, not production traffic, not production scale.",
+    "what": "A shipped client program (level-4-live/client.py) asked genuine questions about the bundled project documents (level-4-live/corpus.json) to an instrumented service (level-4-live/server.py), which called a real local model for every request."
+  },
+  "window": {
+    "duration_s": 7074.687,
+    "end_utc": "2026-11-15T18:33:36.270759+00:00",
+    "records": 340,
+    "start_utc": "2026-11-15T16:35:41.583777+00:00"
+  }
+}

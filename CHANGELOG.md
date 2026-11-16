@@ -8,6 +8,13 @@ standard v2 the repo's verdict is Functional, not "v1.0 Released".
 ## [Unreleased]
 
 ### Changed
+- 2026-11-08: Independent review applied. One-command reproduce,
+  scripts/reproduce.sh, documented in the README and run in CI. The
+  results_build.json benchmark_label no longer claims the Muse VM for a
+  timing every machine re-measures. CITATION.cff drops date-released
+  (the old v1.0 tag date) until a release under standard v2. Grades
+  removed from the v0.1, v0.5 and v1.0 GitHub release notes; tags
+  unchanged.
 - 2026-11-08: Restructured to the portfolio standard v2. README is the
   abstract (question, headline with its interval, field, job family,
   verdict: Functional, not pre-registered). PROPOSAL.md gathers SPEC.md,
@@ -22,6 +29,17 @@ standard v2 the repo's verdict is Functional, not "v1.0 Released".
   watches site/ npm packages.
 
 ### Added
+- 2026-11-15: Level 4 Live (level-4-live/). A real-traffic
+  observation window: 340 real requests to a local
+  Qwen2.5-0.5B-Instruct model (llama.cpp, CPU) on the fleet node
+  BlackBoxV3 (BlackBoxV2, the planned host, was unreachable that
+  day), logged through the Level 2 store with wall-clock latencies
+  and the server's own token counts: 0 errors, mean latency 304 ms,
+  no drift between halves, and a mechanical answer check at 255/340
+  that proved all-or-nothing per question form. Evidence:
+  level-4-live/store_live.jsonl and level-4-live/results_live.json;
+  write-up in REPORT.md. The README headline no longer says no real
+  traffic was observed.
 - 2026-11-08: tests/test_smoke.py checks the required files and that no
   public file carries a grade. CHANGELOG.md, CITATION.cff, SECURITY.md,
   docs/decisions/ 0001 and 0002.
